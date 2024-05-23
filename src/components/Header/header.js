@@ -1,7 +1,8 @@
 import React from "react";
-import "./header.css";
+import "../Header/header.css";
 import Logo from "../../assets/images/logo.svg";
-
+import SearchIcon from "@mui/icons-material/Search";
+import Select from "../SelectDrop/select";
 const header = () => {
   return (
     <>
@@ -15,9 +16,14 @@ const header = () => {
             {/* headerSearch start here */}
             <div className="col-sm-5">
               <div className="headerSearch d-flex align-items-center">
-                <div className="selectDrop cursor">All Categories</div>
+                <div className="selectDrop cursor position-relative">
+                  All Categories
+                  <Select />
+                </div>
+
                 <div className="search">
                   <input type="text" placeholder="Search for items..." />
+                  <SearchIcon className="searchIcon cursor position-relative" />
                 </div>
               </div>
             </div>
