@@ -12,7 +12,7 @@ header .headerSearch {
   padding: 10px 20px;
 }
 
-header .headerSearch .selectDrop {
+header .headerSearch .selectDropWapper {
   width: 18%;
   /* font-size: 18px; */
   font-size: 12px;
@@ -20,13 +20,13 @@ header .headerSearch .selectDrop {
   position: relative;
 }
 
-header .headerSearch .selectDrop:after {
+header .headerSearch .selectDropWapper:after {
   content: "";
   width: 1px;
   height: 30px;
   background: rgba(0, 0, 0, 0.2);
   position: absolute;
-  top: 0px;
+  top: -4px;
   right: 0px;
 }
 

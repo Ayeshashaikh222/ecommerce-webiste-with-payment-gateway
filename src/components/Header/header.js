@@ -3,7 +3,7 @@ import "../Header/header.css";
 import Logo from "../../assets/images/logo.svg";
 import SearchIcon from "@mui/icons-material/Search";
 import Select from "../SelectDrop/select";
-const header = () => {
+const Header = () => {
   return (
     <>
       <header className="">
@@ -16,10 +16,7 @@ const header = () => {
             {/* headerSearch start here */}
             <div className="col-sm-5">
               <div className="headerSearch d-flex align-items-center">
-                <div className="selectDrop cursor position-relative">
-                  All Categories
-                  <Select />
-                </div>
+                <Select />
 
                 <div className="search">
                   <input type="text" placeholder="Search for items..." />
@@ -36,4 +33,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default Header;
