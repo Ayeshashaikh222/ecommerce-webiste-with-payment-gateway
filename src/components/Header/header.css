@@ -12,7 +12,7 @@ header .headerSearch {
   padding: 10px 20px;
 }
 
-header .headerSearch .selectDropWapper {
+header .headerSearch .selectDropWrapper {
   width: 24%;
   /* font-size: 18px; */
   font-size: 12px;
@@ -20,13 +20,13 @@ header .headerSearch .selectDropWapper {
   position: relative;
 }
 
-header .headerSearch .selectDropWapper:after {
+header .headerSearch .selectDropWrapper:after {
   content: "";
   width: 1px;
   height: 30px;
   background: rgba(0, 0, 0, 0.2);
   position: absolute;
-  top: -4px;
+  top: 5px;
   right: 0px;
 }
 
@@ -52,5 +52,31 @@ header .headerSearch .search .searchIcon {
   left: 4px;
   opacity: 0.5;
   font-size: 32px;
-  border: 0px;
+  /* border: 0px; */
+}
+
+header .countryWrapper .selectDropWrapper {
+  width: 200px !important;
+  height: 50px;
+  font-weight: 500;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding-left: 10px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+header .countryWrapper .selectDropWrapper .openSelect {
+  width: 100%;
+}
+
+header .countryWrapper .selectDropWrapper .selectDrop {
+  top: 107% !important;
+  left: 0px !important;
+}
+
+header .countryWrapper .openSelect {
+  color: #279a65 !important;
 }

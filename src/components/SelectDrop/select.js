@@ -3,10 +3,10 @@ import "../SelectDrop/select.css";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 
-const Select = ({ data }) => {
+const Select = ({ data, placeholder, icon }) => {
   const [isOpenSelect, setisOpenSelect] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [selectedItem, setSelectedItem] = useState("All Categories");
+  const [selectedItem, setSelectedItem] = useState(placeholder);
 
   const handleopenSelect = () => {
     setisOpenSelect(!isOpenSelect);
@@ -20,7 +20,8 @@ const Select = ({ data }) => {
 
   return (
     <ClickAwayListener onClickAway={() => setisOpenSelect(false)}>
-      <div className="selectDropWapper cursor position-relative">
+      <div className="selectDropWrapper cursor position-relative">
+        {icon}
         <span className="openSelect" onClick={handleopenSelect}>
           {selectedItem}
           <KeyboardArrowDownIcon className="arrow" />
@@ -32,11 +33,19 @@ const Select = ({ data }) => {
               <input type="text" placeholder="Search here..." />
             </div>
             <ul className="searchResults">
+              <li
+                key={0}
+                onClick={() => handleCloseSelect(0, placeholder)}
+                className={`${selectedIndex === 0 ? "active" : ""}`}
+              >
+                {placeholder}
+              </li>
+
               {data.map((item, index) => (
                 <li
-                  key={index}
-                  onClick={() => handleCloseSelect(index, item)}
-                  className={`${selectedIndex === index ? "active" : ""}`}
+                  key={index + 1}
+                  onClick={() => handleCloseSelect(index + 1, item)}
+                  className={`${selectedIndex === index + 1 ? "active" : ""}`}
                 >
                   {item}
                 </li>

@@ -3,7 +3,8 @@ import "../Header/header.css";
 import Logo from "../../assets/images/logo.svg";
 import SearchIcon from "@mui/icons-material/Search";
 import Select from "../SelectDrop/select";
-import axios from "axios";
+import { getCountry } from "../../api/http";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 
 const Header = () => {
   const [categories, setcategories] = useState([
@@ -19,26 +20,18 @@ const Header = () => {
     "Bread and Juice",
   ]);
 
-  const countryList = [];
+  const [countryList, setCountryList] = useState([]);
 
   useEffect(() => {
-    getCountry("https://countriesnow.space/api/v0.1/countries/");
-  }, []);
+    const fetchCountries = async () => {
+      const countries = await getCountry(
+        "https://countriesnow.space/api/v0.1/countries/"
+      );
+      setCountryList(countries);
+    };
 
-  const getCountry = async (url) => {
-    try {
-      await axios.get(url).then((res) => {
-        if (res !== null) {
-          res.data.data.map((item, index) => {
-            countryList.push(item.country);
-            console.log(item.country);
-          });
-        }
-      });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+    fetchCountries();
+  }, []);
 
   return (
     <>
@@ -52,7 +45,11 @@ const Header = () => {
             {/* headerSearch start here */}
             <div className="col-sm-5">
               <div className="headerSearch d-flex align-items-center">
-                <Select data={categories} />
+                <Select
+                  data={categories}
+                  placeholder={"All Categories"}
+                  icon={false}
+                />
 
                 <div className="search">
                   <input type="text" placeholder="Search for items..." />
@@ -62,8 +59,14 @@ const Header = () => {
             </div>
 
             {/* headerSearch start here */}
-            <div className="col-sm-5">
-              <Select data={countryList} />
+            <div className="col-sm-5 d-flex align-items-center">
+              <div className="countryWrapper ">
+                <Select
+                  data={countryList}
+                  placeholder="Your Location"
+                  icon={<LocationOnOutlinedIcon style={{ opacity: "0.5" }} />}
+                />
+              </div>
             </div>
           </div>
         </div>
