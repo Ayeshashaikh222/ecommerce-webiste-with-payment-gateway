@@ -13,7 +13,7 @@ header .headerSearch {
 }
 
 header .headerSearch .selectDropWapper {
-  width: 18%;
+  width: 24%;
   /* font-size: 18px; */
   font-size: 12px;
   font-weight: 500;
@@ -32,7 +32,7 @@ header .headerSearch .selectDropWapper:after {
 
 header .headerSearch .search {
   width: 82%;
-  padding-left: 30px;
+  padding-left: 20px;
   position: relative;
 }
 

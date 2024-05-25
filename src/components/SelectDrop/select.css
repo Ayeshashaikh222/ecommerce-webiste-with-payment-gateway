@@ -1,3 +1,13 @@
+.selectDropWrapper .openSelect {
+  display: block;
+  padding: 10px 0px;
+}
+.selectDropWrapper .openSelect .arrow {
+  position: absolute;
+  top: 5px;
+  right: 0px;
+}
+
 .selectDrop {
   width: 300px;
   height: auto;
@@ -7,12 +17,7 @@
   left: -20px;
   z-index: 100;
   box-shadow: 0 3px 6px rgb(0 0 0 / 20%);
-  padding: 15px;
-}
-
-.selectDrop .openSelect {
-  display: block;
-  padding: 10px 0px;
+  padding: 10px;
 }
 
 .searchFeild input {
@@ -32,12 +37,26 @@
   overflow-y: scroll;
 }
 
-.selectDrop .searchResults:: -webkit-scrollbar {
+/* .selectDrop .searchResults::-webkit-scrollbar {
   width: 10px !important;
 }
 
-.selectDrop .searchResults-thumb:: -webkit-scrollbar {
+.selectDrop .searchResults-thumb::-webkit-scrollbar {
   background: #ccc !important;
+  border-radius: 5px;
+} */
+
+.selectDrop .searchResults::-webkit-scrollbar {
+  width: 10px;
+}
+
+.selectDrop .searchResults::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 5px;
+}
+
+.selectDrop .searchResults::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
 .selectDrop .searchResults li {
@@ -45,9 +64,15 @@
   font-size: 13px;
   width: 100%;
   padding: 10px;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .selectDrop .searchResults li:hover {
   background: #3bb77e;
   color: #fff;
+}
+
+.selectDrop .searchResults li.active {
+  background: #f1f1f1;
+  color: #000 !important;
 }
