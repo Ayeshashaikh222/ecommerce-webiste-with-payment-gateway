@@ -80,3 +80,32 @@ header .countryWrapper .selectDropWrapper .selectDrop {
 header .countryWrapper .openSelect {
   color: #279a65 !important;
 }
+
+header .headerTabs {
+  padding-left: 10px;
+  /* border: 1px solid red; */
+}
+
+header .headerTabs li {
+  position: relative;
+  margin-left: 10px;
+}
+
+header .headerTabs li span {
+  font-size: 12px;
+  cursor: pointer;
+}
+
+header .headerTabs li span img {
+  margin-right: 12px;
+}
+
+header .headerTabs li span.badge {
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  font-weight: 400;
+  position: absolute;
+  top: -9px;
+  left: 10px;
+}

@@ -8,6 +8,9 @@ const Select = ({ data, placeholder, icon }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedItem, setSelectedItem] = useState(placeholder);
 
+  const [listData, setListData] = useState(data);
+  const [listData2, setListData2] = useState(data);
+
   const handleopenSelect = () => {
     setisOpenSelect(!isOpenSelect);
   };
@@ -18,19 +21,36 @@ const Select = ({ data, placeholder, icon }) => {
     setSelectedItem(name);
   };
 
+  const filterList = (e) => {
+    const keyword = e.target.value.toLowerCase();
+    // console.log(keyword);
+
+    const list = listData2.filter((item) => {
+      return item.toLowerCase().includes(keyword);
+    });
+
+    console.log(list);
+  };
+
   return (
     <ClickAwayListener onClickAway={() => setisOpenSelect(false)}>
       <div className="selectDropWrapper cursor position-relative">
         {icon}
         <span className="openSelect" onClick={handleopenSelect}>
-          {selectedItem}
+          {selectedItem.length > 14
+            ? selectedItem.substr(0, 14) + "..."
+            : selectedItem}
           <KeyboardArrowDownIcon className="arrow" />
         </span>
 
         {isOpenSelect === true && (
           <div className="selectDrop">
             <div className="searchFeild">
-              <input type="text" placeholder="Search here..." />
+              <input
+                type="text"
+                placeholder="Search here..."
+                onChange={filterList}
+              />
             </div>
             <ul className="searchResults">
               <li
