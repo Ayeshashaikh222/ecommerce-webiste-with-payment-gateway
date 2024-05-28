@@ -18,8 +18,9 @@
   top: 132%;
   left: -20px;
   z-index: 100;
-  box-shadow: 0 3px 6px rgb(0 0 0 / 20%);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   padding: 10px;
+  border-radius: 4px;
 }
 
 .searchFeild input {

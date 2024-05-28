@@ -9,6 +9,13 @@ import IconCompare from "../../assets/images/icon-compare.svg";
 import IconHeart from "../../assets/images/icon-heart.svg";
 import IconCart from "../../assets/images/icon-cart.svg";
 import IconUser from "../../assets/images/icon-user.svg";
+import Button from "@mui/material/Button";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import { ClickAwayListener } from "@mui/base/ClickAwayListener";
+import Navbar from "./NavBar/navbar";
 
 const Header = () => {
   const [categories, setcategories] = useState([
@@ -23,6 +30,8 @@ const Header = () => {
     "Fresh Fruit",
     "Bread and Juice",
   ]);
+
+  const [isOpenDropDown, setisOpenDropDown] = useState(false);
 
   const [countryList, setCountryList] = useState([]);
 
@@ -97,11 +106,48 @@ const Header = () => {
                   </li>
 
                   <li className="list-inline-item">
-                    <span>
+                    <span onClick={() => setisOpenDropDown(!isOpenDropDown)}>
                       <img src={IconUser} />
-                      <span className="badge bg-success rounded-circle"></span>
                       Account
                     </span>
+
+                    {isOpenDropDown && (
+                      <ClickAwayListener
+                        onClickAway={() => setisOpenDropDown(false)}
+                      >
+                        <ul className="dropdownMenu">
+                          <li>
+                            <Button className="align-item-center">
+                              <PersonOutlineOutlinedIcon /> Account
+                            </Button>
+                          </li>
+                          <li>
+                            <Button>
+                              <LocationOnOutlinedIcon />
+                              Order Tracking
+                            </Button>
+                          </li>
+                          <li>
+                            <Button>
+                              <FavoriteBorderOutlinedIcon />
+                              My Wishlist
+                            </Button>
+                          </li>
+                          <li>
+                            <Button>
+                              <SettingsOutlinedIcon />
+                              Setting
+                            </Button>
+                          </li>
+                          <li>
+                            <Button>
+                              <LogoutOutlinedIcon />
+                              Sign Out
+                            </Button>
+                          </li>
+                        </ul>
+                      </ClickAwayListener>
+                    )}
                   </li>
                 </ul>
               </div>
@@ -109,6 +155,7 @@ const Header = () => {
           </div>
         </div>
       </header>
+      <Navbar />
     </>
   );
 };

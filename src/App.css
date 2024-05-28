@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Italiana&family=Roboto:wght@100;300;400;500;700;900&display=swap");
-
+#root {
+  zoom: 95%;
+}
 * {
   margin: 0px;
   padding: 0px;
@@ -16,4 +18,11 @@ body {
 
 .cursor {
   cursor: pointer;
+}
+.bg-g,
+.bg-success {
+  background: #3bb77e !important;
+}
+.text-g {
+  color: #3bb77e;
 }
