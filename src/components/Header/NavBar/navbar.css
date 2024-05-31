@@ -53,6 +53,7 @@
   position: absolute;
   top: 150%;
   left: 0px;
+  background: #fff;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   padding: 10px 0px;
   border-radius: 4px;
@@ -71,14 +72,14 @@
 .nav nav .dropdown_menu li button {
   width: 100% !important;
   text-align: left !important;
-  font-size: 12px;
+  font-size: 14px;
   justify-content: flex-start !important;
   color: #3bb77e !important;
   text-transform: capitalize !important;
   padding: 10px 15px !important;
 }
 
-.nav nav .dropdown_menu li button a {
+.nav nav .dropdown_menu li button a:hover {
   font-weight: 400 !important;
 }
 

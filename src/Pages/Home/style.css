@@ -1,0 +1,48 @@
+.homeProducts {
+  /* padding: 25px 0px; */
+  padding: 0px;
+  padding-top: 25px;
+}
+
+.filterTab {
+  margin-top: 15px;
+}
+
+.filterTab li {
+  margin-left: 20px;
+}
+
+.filterTab li a {
+  color: #000;
+  text-decoration: none;
+  font-size: 18px;
+  tansition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.filterTab li:hover a {
+  color: #3bb77e !important;
+  transform: translateY(-10px);
+  font-weight: 600;
+}
+
+.homeProducts .productRow {
+  display: flex;
+  padding: 30px 0px;
+  margin: 0px -15px;
+  flex-wrap: wrap;
+}
+
+.homeProducts .productRow .item {
+  width: 20%;
+  padding: 15px 15px;
+}
+
+.homeProductRow2 .productSlider .item {
+  padding: 15px 5px;
+  padding-right: 20px !important;
+}
+
+.homeProductRow2 .productSlider .slick-current .productThumb {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
