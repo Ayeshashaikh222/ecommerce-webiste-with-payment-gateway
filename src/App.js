@@ -6,6 +6,7 @@ import Home from "./Pages/Home/index";
 import About from "./Pages/About";
 import Listing from "./Pages/Listing";
 import Footer from "./components/Footer/footer";
+import NotFound from "./Pages/NotFound/index";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route exact={true} path="/" element={<Home />}></Route>
         <Route exact={true} path="/about" element={<About />}></Route>
         <Route exact={true} path="/listing" element={<Listing />}></Route>
+        <Route exact={true} path="*" element={<NotFound />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

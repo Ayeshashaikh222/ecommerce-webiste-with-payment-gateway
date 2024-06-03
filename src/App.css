@@ -27,6 +27,10 @@ body {
   text-transform: capitalize !important;
 }
 
+.btn-lg {
+  font-size: 22px !important;
+}
+
 .btn-g:hover {
   background: #fdc040 !important;
 }
