@@ -3,8 +3,7 @@ import Slider from "react-slick";
 import "./style.css";
 import Slide1 from "../../../assets/images/slider-1.png";
 import Slide2 from "../../../assets/images/slider-2.png";
-import { Button } from "@mui/material";
-import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
+import LoginBanner from "../../../components/LoginBanner";
 
 const HomeSlider = () => {
   var settings = {
@@ -45,11 +44,7 @@ const HomeSlider = () => {
           </div>
         </Slider>
 
-        <div className="newsLetterBanner">
-          <SendOutlinedIcon />
-          <input type="text" placeholder="Your email address" />
-          <Button className="bg-g">Subscribe</Button>
-        </div>
+        <LoginBanner />
       </div>
     </div>
   );

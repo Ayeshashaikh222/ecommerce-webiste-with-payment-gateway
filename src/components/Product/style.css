@@ -132,7 +132,7 @@
   text-decoration: none;
 }
 
-.productThumb .price {
+/* .productThumb .price {
   font-size: 22px;
   margin-right: 13px;
 }
@@ -142,7 +142,7 @@
   opacity: 0.6;
   color: #000;
   text-decoration: line-through;
-}
+} */
 
 .productThumb button {
   font-size: 16px !important;

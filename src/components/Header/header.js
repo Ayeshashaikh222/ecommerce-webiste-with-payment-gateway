@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../Header/header.css";
+import "../Header/style.css";
 import Logo from "../../assets/images/logo.svg";
 import SearchIcon from "@mui/icons-material/Search";
 import Select from "../SelectDrop/select";

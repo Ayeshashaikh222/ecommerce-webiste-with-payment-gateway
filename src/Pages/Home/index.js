@@ -164,16 +164,16 @@ const Home = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col">
-              <TopProducts />
+              <TopProducts title="Top Selling" />
             </div>
             <div className="col">
-              <TopProducts />
+              <TopProducts title="Trending Products" />
             </div>
             <div className="col">
-              <TopProducts />
+              <TopProducts title="recently Added" />
             </div>
             <div className="col">
-              <TopProducts />
+              <TopProducts title="Top Rated" />
             </div>
           </div>
         </div>
