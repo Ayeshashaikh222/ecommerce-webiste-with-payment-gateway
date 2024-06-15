@@ -154,7 +154,7 @@ header .headerTabs li span.badge {
 .dropdownMenu li button {
   width: 100% !important;
   text-align: left !important;
-  font-size: 12px;
+  font-size: 14px;
   justify-content: flex-start !important;
   color: rgba(0, 0, 0, 0.7) !important;
   text-transform: capitalize !important;

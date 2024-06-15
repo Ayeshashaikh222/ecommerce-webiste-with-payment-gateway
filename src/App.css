@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Italiana&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css");
+
 #root {
   zoom: 95%;
 }
@@ -10,6 +14,7 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  font-size: 18px;
 }
 
 .conatiner-fluid {
@@ -19,16 +24,38 @@ body {
 .cursor {
   cursor: pointer;
 }
+.btn-border {
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  padding: 10px 25px !important;
+  border-radius: 5px !important;
+  color: #000 !important;
+}
+
+.btn-border svg {
+  opacity: 0.5;
+}
+
+.btn-border:hover {
+  border: 1px solid #3bb77e !important;
+  background: #3bb77e !important;
+  color: #fff !important;
+}
+
+.btn-border:hover svg {
+  opacity: 1 !important;
+}
+
 .btn-g {
   background: #3bb77e !important;
   padding: 10px 25px !important;
-  border-radius: 5px !important;
+  border-radius: 10px !important;
   color: #fff !important;
   text-transform: capitalize !important;
 }
 
 .btn-lg {
   font-size: 22px !important;
+  padding: 10px 25px !important;
 }
 
 .btn-g:hover {
@@ -41,6 +68,18 @@ body {
 }
 .text-g {
   color: #3bb77e;
+}
+
+.text-org {
+  color: #fdc040 !important;
+}
+
+.text-light {
+  color: #8b8b8b !important;
+}
+
+p {
+  color: #7e7e7e;
 }
 
 .hd {
@@ -401,4 +440,360 @@ body {
 }
 .rightContent .topStrip .tab_ .dropdownMenu {
   top: 100% !important;
+}
+
+.breadcrumbWrapper {
+  width: 100%;
+  height: auto;
+  padding: 30px 0px;
+  /* border-top: 1px solid rgba(0, 0, 0, 0.1) !important; */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.breadcrumb2 {
+  background: none !important;
+  padding: 0px !important;
+}
+
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li + li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #000;
+  text-decoration: none !important;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #3bb77e;
+  text-decoration: underline;
+}
+
+.detailsContainer {
+  max-width: 85%;
+  padding: 30px 0px;
+}
+
+.detailsContainer .leftPart {
+  max-width: 79.3333%;
+}
+
+.detailsPage .productInfo {
+  padding-left: 80px;
+}
+
+.detailsPage .productInfo h1 {
+  font-size: 55px;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+.detailsPage .productInfo .priceSection .priceLarge {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.detailsPage .productInfo .priceSection .text-org {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.detailsPage .productInfo .priceSection .text-light .oldPrice {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.productZoom {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+.zoomSlider {
+  padding-top: 30px;
+}
+
+.zoomSlider .slick-slide {
+  padding-right: 10px !important;
+}
+
+/* .zoomSlider .slick-slide .item {
+  margin-right: 20px !important;
+} */
+
+.zoomSlider * {
+  outline: none !important;
+}
+.zoomSlider .item {
+  border: 2px solid transparent !important;
+  overflow: hidden;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 1em 2em -0.5em rgba(0, 0, 0, 0.2);
+}
+
+.zoomSliderBig {
+  width: 100% !important;
+  box-shadow: 0 1em 2em -0.5em rgba(0, 0, 0, 0.2);
+}
+/* .zoomSliderBig .slick-slide {
+  width: 100% !important;
+} */
+
+.zoomSlider .slick-current .item {
+  border: 2px solid #3bb77e !important;
+}
+
+.zoomSlider .slick-arrow {
+  top: 55% !important;
+  zoom: 80% !important;
+}
+
+.zoomSlider .slick-arrow.slick-next {
+  right: 0% !important;
+  /* top: 58% !important; */
+}
+
+.zoomSlider .slick-arrow.slick-prev {
+  left: -3% !important;
+  /* top: 58% !important; */
+}
+
+.productSize {
+  width: 100%;
+  height: auto;
+  padding: 25px 0px;
+}
+
+.productSize ul li {
+  margin-right: 10px !important;
+}
+
+.productSize ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px !important;
+  cursor: pointer;
+  text-decoration: none !important;
+  color: #000;
+  font-size: 16px !important;
+  transition: all 0.1s ease-in-out;
+}
+
+.productSize ul li a.active {
+  background: #3bb77e !important;
+  color: #fff !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.addCartSection {
+  width: 100%;
+  height: auto;
+}
+.addCartSection .counterSection {
+  width: 100px;
+  height: 49px;
+  border-radius: 10px;
+  border: 1px solid #3bb77e !important;
+  overflow: hidden;
+  padding: 10px;
+}
+.addCartSection .counterSection input {
+  width: 60px;
+  height: 28px;
+  padding: 5px;
+  border: 0px;
+  outline: none !important;
+  text-align: center;
+  pointer-events: none;
+}
+
+.addCartSection .counterSection {
+  position: relative;
+}
+.addCartSection .counterSection .arrow {
+  position: absolute;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.addCartSection .counterSection .arrow.plus {
+  top: 0px;
+  right: 10px;
+}
+.addCartSection .counterSection .arrow.minus {
+  bottom: 0px;
+  right: 10px;
+}
+
+.addtocartbtn svg {
+  font-size: 28px !important;
+}
+
+.addCartSection button {
+  height: 49px;
+  min-width: inherit !important;
+  font-size: 18px !important;
+}
+.addCartSection button svg {
+  font-size: 30px !important;
+}
+
+.sidebarWrapper.sidebarOverride .sidebar .card {
+  margin-top: 0px !important;
+}
+
+.card {
+  border-radius: 10px !important;
+}
+.detailsPageTabs {
+  border-radius: 25px !important;
+}
+
+.customTabs ul li {
+  margin-right: 30px !important;
+}
+.customTabs ul li button {
+  padding: 10px 25px !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  font-size: 16px !important;
+  text-transform: capitalize !important;
+  border-radius: 30px !important;
+  color: #000 !important;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.customTabs ul li button.active {
+  color: #3bb77e !important;
+}
+.customTabs ul li button:hover {
+  transform: translateY(-5px);
+}
+
+.reviewCard {
+  margin-bottom: 25px !important;
+  /* position: relative;
+  transition: all 0.3s ease-in-out; */
+  box-shadow: 0 1em 2em -0.5em rgba(0, 0, 0, 0.1);
+}
+
+/* .reviewCard:hover {
+  transform: translateY(-8px);
+} */
+.reviewCard .rounded-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+}
+
+.reviewCard .rounded-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reviewCard .image {
+  width: 100px;
+}
+
+.reviewCard .info h5 {
+  font-size: 16px !important;
+}
+
+.reviewForm .form-group {
+  margin-bottom: 25px;
+}
+
+.reviewForm .form-group .form-control {
+  height: 50px;
+  font-size: 18px;
+  border-radius: 7px !important;
+  padding-left: 20px;
+}
+
+.reviewForm .form-group textarea.form-control {
+  height: 160px;
+  padding-top: 25px;
+}
+
+.progressBarBox {
+  margin-bottom: 10px;
+}
+
+.relatedProducts .productSlider .item {
+  padding: 15px 5px;
+  padding-right: 20px !important;
+}
+
+.relatedProducts .slick-arrow.slick-prev {
+  left: -1% !important;
+}
+
+.relatedProducts .slick-arrow.slick-next {
+  right: 0% !important;
+}
+
+.relatedProducts h3 {
+  font-size: 32px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.relatedProducts h3:before {
+  content: "";
+  width: 15%;
+  height: 3px;
+  background: #b0e5c2;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: 10;
+}
+
+.relatedProducts h3:after {
+  content: "";
+  width: 100%;
+  height: 3px;
+  background: #f0f0f0;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
 }
