@@ -9,18 +9,19 @@
 }
 
 .filterTab li {
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .filterTab li a {
   color: #000;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   tansition: all 0.3s ease-in-out;
   position: relative;
 }
 
-.filterTab li:hover a {
+.filterTab li:hover a,
+.filterTab li a.act {
   color: #3bb77e !important;
   transform: translateY(-10px);
   font-weight: 600;

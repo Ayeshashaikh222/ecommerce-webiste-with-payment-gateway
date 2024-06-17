@@ -18,32 +18,60 @@ function App() {
     getData("http://localhost:3000/productData");
   }, []);
 
+  // const getData = async (url) => {
+  //   try {
+  //     await axios.get(url).then((response) => {
+  //       console.log(response.data);
+  //       setProductData(response.data)
+  //     });
+  //   } catch (error) {
+  //     console.log(error.message);
+
+  //   }
+  // };
+
   const getData = async (url) => {
     try {
-      await axios.get(url).then((response) => {
-        console.log(response.data);
-      });
+      const response = await axios.get(url);
+      console.log(response.data);
+      setProductData(response.data);
     } catch (error) {
       console.log(error.message);
     }
   };
 
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route exact={true} path="/" element={<Home />}></Route>
-        <Route exact={true} path="/about" element={<About />}></Route>
-        <Route exact={true} path="/listing" element={<Listing />}></Route>
-        <Route exact={true} path="*" element={<NotFound />}></Route>
-        <Route
-          exact={true}
-          path="/product/details"
-          element={<ProductDetailPage />}
-        ></Route>
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    productData.length !== 0 && (
+      <BrowserRouter>
+        <Header data={productData} />
+        <Routes>
+          <Route exact={true} path="/" element={<Home data={productData} />} />
+          <Route
+            exact={true}
+            path="/cat/:id"
+            element={<Listing data={productData} single={true} />}
+          />
+          <Route
+            exact={true}
+            path="/cat/:id/:id"
+            element={<Listing single={false} />}
+          />
+          <Route
+            exact={true}
+            path="/product/details"
+            element={<ProductDetailPage />}
+          />
+          <Route exact={true} path="/about" element={<About />} />
+          <Route exact={true} path="*" element={<NotFound />} />
+          <Route
+            exact={true}
+            path="/product/details"
+            element={<ProductDetailPage />}
+          ></Route>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    )
   );
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./navbar.css";
 import Button from "@mui/material/Button";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -7,12 +7,17 @@ import { Link } from "react-router-dom";
 import LocalFireDepartmentOutlinedIcon from "@mui/icons-material/LocalFireDepartmentOutlined";
 import HeadphonesOutlinedIcon from "@mui/icons-material/HeadphonesOutlined";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const [navData, setNavData] = useState([]);
+
+  useEffect(() => {
+    setNavData(props.data);
+  }, []);
   return (
     <div className="nav d-flex align-items-center">
       <div className="container-fluid ">
         <div className="row position-relative">
-          <div className="col-sm-3 part1 d-flex align-items-center">
+          <div className="col-sm-3 part1 d-flex align-items-center ">
             <Button className="bg-g text-white categoryTab">
               <GridViewOutlinedIcon />
               &nbsp; Browse All Categories
@@ -32,12 +37,71 @@ const Navbar = () => {
                 </li>
                 <li className="list-inline-item">
                   <Button>
-                    <Link>Home</Link>
+                    <Link to={"/"}>Home</Link>
                     <KeyboardArrowDownIcon />
                   </Button>
                 </li>
 
-                <li className="list-inline-item">
+                {navData.length !== 0 &&
+                  navData.map((item, index) => {
+                    return (
+                      <li className="list-inline-item" key={index}>
+                        <Button
+                        // onClick={() => openDropdownFun(index)}
+                        >
+                          <Link
+                            to={`/cat/${item.cat_name.toLowerCase()}`}
+                            // onClick={() =>
+                            //   sessionStorage.setItem(
+                            //     "cat",
+                            //     item.cat_name.toLowerCase()
+                            //   )
+                            // }
+                          >
+                            {item.cat_name}{" "}
+                            <KeyboardArrowDownIcon
+                            // className={`${
+                            //   openDropdownMenu === true &&
+                            //   openDropdownMenuIndex === index &&
+                            //   "rotateIcon"
+                            // }`}
+                            />
+                          </Link>
+                        </Button>
+                        {item.items.length !== 0 && (
+                          <div className={`dropdown_menu`}>
+                            <ul>
+                              {item.items.map((item_, index_) => {
+                                return (
+                                  <li key={index_}>
+                                    <Button
+                                    // onClick={props.closeNav}
+                                    >
+                                      <Link
+                                        to={`/cat/${item.cat_name.toLowerCase()}/${item_.cat_name
+                                          .replace(/\s/g, "-")
+                                          .toLowerCase()}`}
+                                        // onClick={() =>
+                                        //   sessionStorage.setItem(
+                                        //     "cat",
+                                        //     item.cat_name.toLowerCase()
+                                        //   )
+                                        // }
+                                      >
+                                        {item_.cat_name}
+                                      </Link>
+                                    </Button>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        )}
+                      </li>
+                    );
+                  })}
+
+                {/* <li className="list-inline-item">
                   <Button>
                     <Link>Shop</Link>
                     <KeyboardArrowDownIcon />
@@ -108,7 +172,8 @@ const Navbar = () => {
                     <Link>Venders</Link>
                     <KeyboardArrowDownIcon />
                   </Button>
-                </li>
+                </li> */}
+
                 <li className="list-inline-item position-static">
                   <Button>
                     <Link>Mega menu</Link>
@@ -117,75 +182,37 @@ const Navbar = () => {
 
                   <div className="dropdown_menu megaMenu w-100">
                     <div className="row">
-                      <div className="col">
-                        <h4 className="text-g">Fruits & Vegetables</h4>
-                        <ul className="mt-4 mb-0">
-                          <li>
-                            <Link to="">Meat & Poultry</Link>
-                          </li>
-                          <li>
-                            <Link to="">Fruits & Vegetables</Link>
-                          </li>
-                          <li>
-                            <Link to="">Herbs & Seasonings</Link>
-                          </li>
-                          <li>
-                            <Link to="">Cuts & Sprouts</Link>
-                          </li>
-                          <li>
-                            <Link to="">Exotic Fruits & Veggies</Link>
-                          </li>
-                          <li>
-                            <Link to="">Packaged Produce</Link>
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="col">
-                        <h4 className="text-g">Breakfast & Dairy</h4>
-                        <ul className="mt-4 mb-0">
-                          <li>
-                            <Link to="">Milk & Flavoured Milk</Link>
-                          </li>
-                          <li>
-                            <Link to="">Butter and Margarine</Link>
-                          </li>
-                          <li>
-                            <Link to="">Eggs Subtitutes</Link>
-                          </li>
-                          <li>
-                            <Link to="">Marmalades</Link>
-                          </li>
-                          <li>
-                            <Link to="">Sour Cream</Link>
-                          </li>
-                          <li>
-                            <Link to="">Cheese</Link>
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="col">
-                        <h4 className="text-g">Meat & Seafood</h4>
-                        <ul className="mt-4 mb-0">
-                          <li>
-                            <Link to="">Breakfast Sausage</Link>
-                          </li>
-                          <li>
-                            <Link to="">Dinner Sausage</Link>
-                          </li>
-                          <li>
-                            <Link to="">Chicken</Link>
-                          </li>
-                          <li>
-                            <Link to="">Sliced Deli Meat</Link>
-                          </li>
-                          <li>
-                            <Link to="">Wild Caught Fillets</Link>
-                          </li>
-                          <li>
-                            <Link to="">Crab and Shellfish</Link>
-                          </li>
-                        </ul>
-                      </div>
+                      {props.data.length !== 0 &&
+                        props.data.map((item, index) => {
+                          return (
+                            <div className="col">
+                              <Link to={`/cat/${item.cat_name.toLowerCase()}`}>
+                                {" "}
+                                <h4 className="text-g text-capitalize">
+                                  {item.cat_name}
+                                </h4>
+                              </Link>
+                              {item.items.length !== 0 && (
+                                <ul className="mt-4 mb-0">
+                                  {item.items.map((item_, index) => {
+                                    return (
+                                      <li>
+                                        <Link
+                                          // onClick={props.closeNav}
+                                          to={`/cat/${item.cat_name.toLowerCase()}/${item_.cat_name
+                                            .replace(/\s/g, "-")
+                                            .toLowerCase()}`}
+                                        >
+                                          {item_.cat_name}
+                                        </Link>
+                                      </li>
+                                    );
+                                  })}
+                                </ul>
+                              )}
+                            </div>
+                          );
+                        })}
                       <div className="col">
                         <img
                           src="https://wp.alithemes.com/html/nest/demo/assets/imgs/banner/banner-menu.png"
@@ -269,7 +296,7 @@ const Navbar = () => {
                   </div>
                 </li>
 
-                <li className="list-inline-item">
+                {/* <li className="list-inline-item">
                   <Button>
                     <Link>About</Link>
                   </Button>
@@ -279,7 +306,7 @@ const Navbar = () => {
                   <Button>
                     <Link>Contact</Link>
                   </Button>
-                </li>
+                </li> */}
               </ul>
             </nav>
           </div>

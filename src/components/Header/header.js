@@ -17,7 +17,7 @@ import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 import Navbar from "./NavBar/navbar";
 
-const Header = () => {
+const Header = (props) => {
   const [categories, setcategories] = useState([
     "Milks and Dairies",
     "Wines & Drinks",
@@ -177,7 +177,7 @@ const Header = () => {
             </div>
           </div>
         </header>
-        <Navbar />
+        <Navbar data={props.data} />
       </div>
 
       <div className="afterHeader"></div>
