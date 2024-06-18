@@ -77,8 +77,8 @@ const Navbar = (props) => {
                                     <Button
                                     // onClick={props.closeNav}
                                     >
-                                      <Link
-                                        to={`/cat/${item.cat_name.toLowerCase()}/${item_.cat_name
+                                      <a
+                                        href={`/cat/${item.cat_name.toLowerCase()}/${item_.cat_name
                                           .replace(/\s/g, "-")
                                           .toLowerCase()}`}
                                         // onClick={() =>
@@ -89,7 +89,7 @@ const Navbar = (props) => {
                                         // }
                                       >
                                         {item_.cat_name}
-                                      </Link>
+                                      </a>
                                     </Button>
                                   </li>
                                 );
@@ -186,25 +186,25 @@ const Navbar = (props) => {
                         props.data.map((item, index) => {
                           return (
                             <div className="col">
-                              <Link to={`/cat/${item.cat_name.toLowerCase()}`}>
+                              <a href={`/cat/${item.cat_name.toLowerCase()}`}>
                                 {" "}
                                 <h4 className="text-g text-capitalize">
                                   {item.cat_name}
                                 </h4>
-                              </Link>
+                              </a>
                               {item.items.length !== 0 && (
                                 <ul className="mt-4 mb-0">
                                   {item.items.map((item_, index) => {
                                     return (
                                       <li>
-                                        <Link
+                                        <a
                                           // onClick={props.closeNav}
-                                          to={`/cat/${item.cat_name.toLowerCase()}/${item_.cat_name
+                                          href={`/cat/${item.cat_name.toLowerCase()}/${item_.cat_name
                                             .replace(/\s/g, "-")
                                             .toLowerCase()}`}
                                         >
                                           {item_.cat_name}
-                                        </Link>
+                                        </a>
                                       </li>
                                     );
                                   })}

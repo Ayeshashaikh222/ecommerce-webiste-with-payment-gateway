@@ -50,6 +50,12 @@
   overflow: hidden;
   position: relative;
 }
+
+.productThumb .imageWrapper .wrapper {
+  height: 225px;
+  overflow: hidden;
+}
+
 .productThumb:hover .imageWrapper .overlay {
   opacity: 1;
   transform: scale(1);
@@ -58,6 +64,8 @@
 
 .productThumb .imageWrapper img {
   transition: all 0.3s ease-in-out;
+  /* height: 100%; */
+  /* object-fit: cover; */
 }
 
 .productThumb:hover .imageWrapper img {

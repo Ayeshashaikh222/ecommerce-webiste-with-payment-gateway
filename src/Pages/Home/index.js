@@ -24,7 +24,7 @@ const Home = (props) => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     fade: false,
     arrows: true,
@@ -81,30 +81,30 @@ const Home = (props) => {
 
   const bestSellsArr = [];
 
-  // useEffect(() => {
-  //   prodData.length !== 0 &&
-  //     prodData.map((item) => {
-  //       if (item.cat_name === "Electronics") {
-  //         item.items.length !== 0 &&
-  //           item.items.map((item_) => {
-  //             item_.products.length !== 0 &&
-  //               item_.products.map((product, index) => {
-  //                 bestSellsArr.push(product);
-  //               });
-  //           });
-  //       }
-  //     });
+  useEffect(() => {
+    prodData.length !== 0 &&
+      prodData.map((item) => {
+        if (item.cat_name === "Electronics") {
+          item.items.length !== 0 &&
+            item.items.map((item_) => {
+              item_.products.length !== 0 &&
+                item_.products.map((product, index) => {
+                  bestSellsArr.push(product);
+                });
+            });
+        }
+      });
 
-  //   setBestSells(bestSellsArr);
-  // }, []);
+    setBestSells(bestSellsArr);
+  }, []);
 
   return (
     <>
       <HomeSlider />
-      <CategorySlider />
+      <CategorySlider data={prodData} />
       <Banners />
 
-      <section className="homeProducts  ">
+      <section className="homeProducts ">
         <div className="container-fluid">
           <div className="d-flex align-items-center ">
             <h2 className="hd mb-0 mt-0">Popular Products</h2>
@@ -116,15 +116,14 @@ const Home = (props) => {
                       <Link
                         className={`cursor text-capitalize 
                                                 ${
-                                                  activeTabIndex === index
-                                                    ? "act"
-                                                    : ""
+                                                  activeTabIndex === index &&
+                                                  "act"
                                                 }`}
                         onClick={() => {
-                          setActiveTabData([]);
-                          // setactiveTab(cat);
-                          setactiveTabIndex(index);
+                          // setActiveTabData([]);
                           setactiveTab(cat);
+                          setactiveTabIndex(index);
+
                           // productRow.current.scrollLeft = 0;
                           // setIsLoadingProducts(true);
                         }}
@@ -140,43 +139,13 @@ const Home = (props) => {
           <div className="productRow  ">
             {activeTabData.length !== 0 &&
               activeTabData.map((item, index) => {
+                // console.log(item.type);
                 return (
                   <div className="item" key={index}>
                     <Product tag={item.type} item={item} />
                   </div>
                 );
               })}
-
-            {/* <div className="item">
-              <Product tag="sale" />
-            </div>
-            <div className="item">
-              <Product tag="hot" />
-            </div>
-            <div className="item">
-              <Product tag="new" />
-            </div>
-            <div className="item">
-              <Product tag="sale" />
-            </div>
-            <div className="item">
-              <Product tag="best" />
-            </div>
-            <div className="item">
-              <Product tag="sale" />
-            </div>
-            <div className="item">
-              <Product tag="new" />
-            </div>
-            <div className="item">
-              <Product />
-            </div>
-            <div className="item">
-              <Product tag="best" />
-            </div>
-            <div className="item">
-              <Product tag="best" />
-            </div> */}
           </div>
         </div>
       </section>
@@ -185,7 +154,7 @@ const Home = (props) => {
         <div className="container-fluid">
           <div className="d-flex align-items-center ">
             <h2 className="hd mb-0 mt-0">Daily Best Sales </h2>
-            <ul className="list list-inline ml-auto filterTab mb-0">
+            {/* <ul className="list list-inline ml-auto filterTab mb-0">
               <li className="list-inline-item">
                 <Link to="" className="cursor">
                   Featured
@@ -201,36 +170,30 @@ const Home = (props) => {
                   New added
                 </Link>
               </li>
-            </ul>
+            </ul> */}
           </div>
 
           <br />
           <br />
           <div className="row">
             <div className="col-md-3 pr-5">
-              <img src={Banner4} className="w-100" />
+              <img
+                src={Banner4}
+                className=""
+                style={{ width: "115%", borderRadius: "15px" }}
+              />
             </div>
 
             <div className="col-md-9">
               <Slider {...settings} className="productSlider">
-                <div className="item">
-                  <Product tag="hot" />
-                </div>
-                <div className="item">
-                  <Product tag="sale" />
-                </div>
-                <div className="item">
-                  <Product tag="best" />
-                </div>
-                <div className="item">
-                  <Product tag="sale" />
-                </div>
-                <div className="item">
-                  <Product tag="best" />
-                </div>
-                <div className="item">
-                  <Product tag="new" />
-                </div>
+                {bestSells.length !== 0 &&
+                  bestSells.map((item, index) => {
+                    return (
+                      <div className="item">
+                        <Product tag={item.type} item={item} />
+                      </div>
+                    );
+                  })}
               </Slider>
             </div>
           </div>

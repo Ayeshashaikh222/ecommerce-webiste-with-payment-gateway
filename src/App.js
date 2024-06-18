@@ -18,22 +18,10 @@ function App() {
     getData("http://localhost:3000/productData");
   }, []);
 
-  // const getData = async (url) => {
-  //   try {
-  //     await axios.get(url).then((response) => {
-  //       console.log(response.data);
-  //       setProductData(response.data)
-  //     });
-  //   } catch (error) {
-  //     console.log(error.message);
-
-  //   }
-  // };
-
   const getData = async (url) => {
     try {
       const response = await axios.get(url);
-      console.log(response.data);
+      // console.log(response.data);
       setProductData(response.data);
     } catch (error) {
       console.log(error.message);

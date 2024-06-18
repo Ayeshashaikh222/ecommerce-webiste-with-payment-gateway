@@ -9,6 +9,7 @@
           "cat_name": "dals and pulses",
           "products": [
             {
+              "type": "sale",
               "productName": "Good Life Whole Moong 500 g",
               "price": "20",
               "oldPrice": "140",
@@ -29,6 +30,7 @@
               "id": 1
             },
             {
+              "type": "hot",
               "productName": "Moong Dal 2 kg",
               "price": "246",
               "oldPrice": "320",
@@ -46,6 +48,7 @@
               "id": 2
             },
             {
+              "type": "best",
               "productName": "Good Life Raw Peanuts 500 g",
               "price": "89",
               "oldPrice": "150",
@@ -65,6 +68,7 @@
               "id": 3
             },
             {
+              "type": "new",
               "productName": "Tata Sampann Unpolished Chilka Moong 500 g",
               "price": "74",
               "oldPrice": "95",
@@ -83,6 +87,7 @@
               "id": 4
             },
             {
+              "type": "sale",
               "productName": "Good Life Moong Dal 1 kg",
               "price": "145",
               "oldPrice": "189",
@@ -100,6 +105,7 @@
               "id": 5
             },
             {
+              "type": "new",
               "productName": "Good Life Kabuli Chana 1 kg",
               "price": "185",
               "oldPrice": "210",
@@ -117,6 +123,7 @@
               "id": 6
             },
             {
+              "type": "hot",
               "productName": "Angur Oily Toor Dal 5Kg",
               "price": "999",
               "oldPrice": "1100",
@@ -137,6 +144,7 @@
               "id": 7
             },
             {
+              "type": "best",
               "productName": "Fortune Soya Wadi / Chunks 1 kg",
               "price": "139",
               "oldPrice": "152",
@@ -159,6 +167,7 @@
           "cat_name": "Ghee & Oils",
           "products": [
             {
+              "type": "sale",
               "productName": "Gowardhan Pure Cow Ghee 1 L (Jar)",
               "price": "676",
               "oldPrice": "820",
@@ -177,6 +186,7 @@
               "id": 9
             },
             {
+              "type": "new",
               "productName": "Nestle EveryDay Ghee 1 L (Carton)",
               "price": "579",
               "oldPrice": "620",
@@ -196,6 +206,7 @@
               "id": 10
             },
             {
+              "type": "hot",
               "productName": "Amul Cow Ghee 1 L (Pouch)",
               "price": "250",
               "oldPrice": "300",
@@ -213,6 +224,7 @@
               "id": 11
             },
             {
+              "type": "sale",
               "productName": "Amul Cow Ghee 500 ml (Pouch)",
               "price": "300",
               "oldPrice": "380",
@@ -229,6 +241,7 @@
               "id": 12
             },
             {
+              "type": "new",
               "productName": "HARYANA FRESH Rich Desi Danedar Ghee 500 Grams (Carton)",
               "price": "249",
               "oldPrice": "280",
@@ -246,6 +259,7 @@
               "id": 13
             },
             {
+              "type": "sale",
               "productName": "Kheduthaat Shudh Ghee Vedic Method Traditional Suddha Ghee 1 LTR ml",
               "price": "699",
               "oldPrice": "780",
@@ -268,6 +282,7 @@
           "cat_name": "Atta & Flours",
           "products": [
             {
+              "type": "new",
               "productName": "Aashirvaad Superior MP Whole Wheat Atta 1 kg",
               "price": "320",
               "oldPrice": "380",
@@ -287,6 +302,7 @@
               "id": 15
             },
             {
+              "type": "sale",
               "productName": "Aashirvaad Select Sharbati Whole Wheat Atta 1 kg",
               "price": "350",
               "oldPrice": "380",
@@ -305,6 +321,7 @@
               "id": 16
             },
             {
+              "type": "hot",
               "productName": "Aashirvaad Superior MP Whole Wheat Atta 2 kg",
               "price": "250",
               "oldPrice": "300",
@@ -323,6 +340,7 @@
               "id": 17
             },
             {
+              "type": "new",
               "productName": "Chakki Atta 10 kg",
               "price": "400",
               "oldPrice": "450",
@@ -339,6 +357,7 @@
               "id": 18
             },
             {
+              "type": "best",
               "productName": "Good Life MP Wheat Chakki Atta 5 kg",
               "price": "250",
               "oldPrice": "280",
@@ -357,6 +376,7 @@
               "id": 19
             },
             {
+              "type": "sale",
               "productName": "Fortune Suji / Semolina 500 g",
               "price": "26",
               "oldPrice": "35",
@@ -374,6 +394,7 @@
               "id": 20
             },
             {
+              "type": "best",
               "productName": "Wheatkart Whole Wheat Atta - 10 KG",
               "price": "210",
               "oldPrice": "250",
@@ -395,6 +416,7 @@
           "cat_name": "masalas spices",
           "products": [
             {
+              "type": "new",
               "productName": "Good Life Jeera 100 g",
               "price": "300",
               "oldPrice": "350",
@@ -413,6 +435,7 @@
               "id": 22
             },
             {
+              "type": "hot",
               "productName": "Maggi Masala Ae Magic 6 g (Pack of 12)",
               "price": "200",
               "oldPrice": "250",
@@ -432,6 +455,7 @@
               "id": 23
             },
             {
+              "type": "hot",
               "productName": "Good Life Compounded Hing Powder 50 g",
               "price": "55",
               "oldPrice": "85",
@@ -450,6 +474,7 @@
               "id": 24
             },
             {
+              "type": "new",
               "productName": "VEEDINT CUMIN SEEDS, JEERA WHOLE, CUMIN SEED WHOLE, 1 KG PACK",
               "price": "180",
               "oldPrice": "220",
@@ -467,6 +492,7 @@
               "id": 25
             },
             {
+              "type": "sale",
               "productName": "Organic Tattva Cumin Seeds 100 g",
               "price": "88",
               "oldPrice": "110",
@@ -483,6 +509,7 @@
               "id": 26
             },
             {
+              "type": "best",
               "productName": "Lotus Spices Green Elaichi 10 g",
               "price": "32",
               "oldPrice": "55",
@@ -504,6 +531,7 @@
           "cat_name": "Rice & Rice Products",
           "products": [
             {
+              "type": "hot",
               "productName": "Tata Sampann White Poha 500 g",
               "price": "140",
               "oldPrice": "180",
@@ -520,6 +548,7 @@
               "id": 30
             },
             {
+              "type": "new",
               "productName": "Daawat Rozana Super Basmati Broken Rice 1 kg",
               "price": "150",
               "oldPrice": "190",
@@ -537,6 +566,7 @@
               "id": 31
             },
             {
+              "type": "new",
               "productName": "Elina Long Grain Rice 1 kg",
               "price": "140",
               "oldPrice": "160",
@@ -554,6 +584,7 @@
               "id": 32
             },
             {
+              "type": "sale",
               "productName": "Daawat Rozana Gold Basmati Broken Rice 5 kg",
               "price": "130",
               "oldPrice": "170",
@@ -571,6 +602,7 @@
               "id": 33
             },
             {
+              "type": "best",
               "productName": "Daawat Rozana Super Basmati Broken Rice 5 kg",
               "price": "100",
               "oldPrice": "130",
@@ -600,6 +632,7 @@
           "cat_name": "Mobiles & Tablets",
           "products": [
             {
+              "type": "sale",
               "productName": "OnePlus Nord CE 2 Lite 5G,128 GB,6 GB RAM,Blue Tide,Mobile Phone",
               "price": "16,999.00",
               "oldPrice": "19,999.00",
@@ -623,6 +656,7 @@
               "id": 35
             },
             {
+              "type": "best",
               "productName": "Apple iPhone 13 128 GB, Midnight (Black)",
               "price": "56,900.00",
               "oldPrice": "59,900.00",
@@ -643,6 +677,7 @@
               "id": 36
             },
             {
+              "type": "hot",
               "productName": "Tecno Pop 7 Pro 64 GB, 2 GB, Black, Smartphone",
               "price": "5,555.00",
               "oldPrice": "7,999.00 ",
@@ -663,6 +698,7 @@
               "id": 37
             },
             {
+              "type": "sale",
               "productName": "Realme C55 DLC 64GB, 4 GB RAM, Sunshower, Mobile Phone",
               "price": "10,299.00",
               "oldPrice": "12,999.00 ",
@@ -683,6 +719,7 @@
               "id": 38
             },
             {
+              "type": "new",
               "productName": "POCO M6 Pro 5G, 6GB RAM, 128GB ROM, Power Black, Smartphone",
               "price": "12,199.00",
               "oldPrice": "16,999.00",
@@ -705,6 +742,7 @@
           "cat_name": "TV & Speaker",
           "products": [
             {
+              "type": "sale",
               "productName": "Realme 80 cm (32 inch) HD Ready LED Smart Android TV 2023 Edition with Android 11 RMV2205",
               "price": "9,990.00",
               "oldPrice": "21,999.00 ",
@@ -725,6 +763,7 @@
               "id": 40
             },
             {
+              "type": "hot",
               "productName": "Realme 80 cm (32 inch) HD Ready LED Smart Android TV 2023 Edition with Android 11 RMV2205",
               "price": "9,990.00",
               "oldPrice": "21,999.00 ",
@@ -745,6 +784,7 @@
               "id": 41
             },
             {
+              "type": "new",
               "productName": "OnePlus 108 cm (43 inch) Full HD Android Smart LED TV with Dolby Audio Surround Sound Technology, 43Y1S Edge",
               "price": "22,990.00",
               "oldPrice": "33,999.00",
@@ -765,6 +805,7 @@
               "id": 42
             },
             {
+              "type": "best",
               "productName": "TCL 55 QLED Smart Google TV, 55C645",
               "price": "39,990.00",
               "oldPrice": "121,990.00",
@@ -794,6 +835,7 @@
           "cat_name": "Men Western Wear",
           "products": [
             {
+              "type": "sale",
               "productName": "Bomber Jacket with Zipper Pockets",
               "price": "1,593.00",
               "oldPrice": "3,125.00  ",
@@ -814,6 +856,7 @@
               "id": 44
             },
             {
+              "type": "new",
               "productName": "Mid-Rise Skinny Fit Jeans",
               "price": "269.00",
               "oldPrice": "899.00",
@@ -835,6 +878,7 @@
               "id": 45
             },
             {
+              "type": "hot",
               "productName": "Plutus Men Black Solid Polyester Casual Jacket M",
               "price": "499.00",
               "oldPrice": "699.00",
@@ -856,6 +900,7 @@
               "id": 46
             },
             {
+              "type": "new",
               "productName": "BULLMER Men Beige Cotton Blend Printed Single Sweatshirts",
               "price": "699.00",
               "oldPrice": "989.00",
@@ -875,6 +920,7 @@
               "id": 47
             },
             {
+              "type": "sale",
               "productName": "Men Checked Slim Fit Shirt",
               "price": "179.00",
               "oldPrice": "489.00",
@@ -901,6 +947,7 @@
           "cat_name": "Women Western Wear",
           "products": [
             {
+              "type": "new",
               "productName": "Rudraaksha Stylish Dress For women",
               "price": "299.00",
               "oldPrice": "389.00",
@@ -921,6 +968,7 @@
               "id": 49
             },
             {
+              "type": "best",
               "productName": "Fabflee Party Flared Sleeves Printed Women Yellow Top | Women Tops | Crepe Top | Tops For Women",
               "price": "499.00",
               "oldPrice": "589.00",
@@ -942,6 +990,7 @@
               "id": 50
             },
             {
+              "type": "sale",
               "productName": "Shrug with Shawl Lapel",
               "price": "699.00",
               "oldPrice": "989.00",

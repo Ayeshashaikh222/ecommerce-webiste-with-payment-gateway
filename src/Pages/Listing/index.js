@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import SideBar from "../../components/SideBar";
 import Product from "../../components/Product/index";
@@ -9,9 +9,37 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 
-const Listing = () => {
+const Listing = (props) => {
   const [showisOpenDropDown, setShowisOpenDropDown] = useState(false);
   const [shortisOpenDropDown, setShortisOpenDropDown] = useState(false);
+  const [data, setData] = useState([]);
+
+  const { id } = useParams();
+
+  var itemsData = [];
+
+  useEffect(() => {
+    props.data.length !== 0 &&
+      props.data.map((item) => {
+        if (props.single == true) {
+          if (item.cat_name.toLowerCase() == id.toLowerCase()) {
+            item.items.length !== 0 &&
+              item.items.map((item_) => {
+                item_.products.length !== 0 &&
+                  item_.products.map((product) => {
+                    itemsData.push(product);
+                  });
+              });
+          }
+        }
+      });
+
+    const list = itemsData.filter(
+      (item, index) => itemsData.indexOf(item) === index
+    );
+
+    setData(list);
+  }, []);
 
   return (
     <section className="listingPage">
@@ -160,7 +188,13 @@ const Listing = () => {
                 </div>
               </div>
               <div className="productRow pl-3 pr-2">
-                <div className="item">
+                {data.length !== 0 &&
+                  data.map((item, index) => (
+                    <div className="item" key={index}>
+                      <Product tag={item.type} item={item} />
+                    </div>
+                  ))}
+                {/* <div className="item">
                   <Product tag="best" />
                 </div>
                 <div className="item">
@@ -234,7 +268,7 @@ const Listing = () => {
                 </div>
                 <div className="item">
                   <Product tag="sale" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

@@ -29,7 +29,7 @@ const Select = ({ data, placeholder, icon }) => {
       return item.toLowerCase().includes(keyword);
     });
 
-    console.log(list);
+    // console.log(list);
   };
 
   return (
