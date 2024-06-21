@@ -368,6 +368,10 @@ p {
   flex: 0 0 80%;
 }
 
+.homeProducts .productRow .item.relatedItem {
+  width: 25% !important;
+}
+
 .priceRange span {
   font-size: 14px;
 }

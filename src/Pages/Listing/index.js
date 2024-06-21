@@ -19,8 +19,10 @@ const Listing = (props) => {
   var itemsData = [];
 
   useEffect(() => {
+    // alert(id);
     props.data.length !== 0 &&
       props.data.map((item) => {
+        // page == single category
         if (props.single == true) {
           if (item.cat_name.toLowerCase() == id.toLowerCase()) {
             item.items.length !== 0 &&
@@ -32,6 +34,21 @@ const Listing = (props) => {
               });
           }
         }
+        //page == double category
+        else {
+          item.items?.length !== 0 &&
+            item.items?.map((item_) => {
+              if (
+                item_.cat_name.split(" ").join("-").toLowerCase() ===
+                id.toLocaleLowerCase()
+              ) {
+                item_.items.length !== 0 &&
+                  item_.items.map((item__) => {
+                    console.log(item__);
+                  });
+              }
+            });
+        }
       });
 
     const list = itemsData.filter(
@@ -39,7 +56,7 @@ const Listing = (props) => {
     );
 
     setData(list);
-  }, []);
+  }, [id]);
 
   return (
     <section className="listingPage">
@@ -190,7 +207,7 @@ const Listing = (props) => {
               <div className="productRow pl-3 pr-2">
                 {data.length !== 0 &&
                   data.map((item, index) => (
-                    <div className="item" key={index}>
+                    <div className="item relatedItem" key={index}>
                       <Product tag={item.type} item={item} />
                     </div>
                   ))}
