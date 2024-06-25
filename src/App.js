@@ -42,19 +42,19 @@ function App() {
           <Route
             exact={true}
             path="/cat/:id/:id"
-            element={<Listing single={false} />}
+            element={<Listing data={productData} single={false} />}
           />
-          <Route
+          {/* <Route
             exact={true}
             path="/product/details"
             element={<ProductDetailPage />}
-          />
+          /> */}
           <Route exact={true} path="/about" element={<About />} />
           <Route exact={true} path="*" element={<NotFound />} />
           <Route
             exact={true}
-            path="/product/details"
-            element={<ProductDetailPage />}
+            path="/product/:id"
+            element={<ProductDetailPage data={productData} />}
           ></Route>
         </Routes>
         <Footer />

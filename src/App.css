@@ -285,7 +285,7 @@ p {
 .breadCrumb ul li a {
   color: #000;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .breadCrumb ul li svg {
@@ -353,6 +353,14 @@ p {
   color: #000;
   font-size: 14px;
 }
+
+.sidebarWrapper .sidebar .card .categoryList a {
+  text-decoration: none;
+}
+.sidebarWrapper .sidebar .card .categoryList .itemCount {
+  color: #000 !important;
+}
+
 .sidebarWrapper .sidebar .card .categoryList .categoryItem .rounded-circle {
   background: #bce3c9;
   width: 40px;

@@ -13,6 +13,7 @@ const Product = (props) => {
   const [isAdded, setIsadded] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setProductData(props.item);
   }, [props.item]);
 

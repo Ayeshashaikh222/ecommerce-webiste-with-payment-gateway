@@ -51,12 +51,12 @@ const Navbar = (props) => {
                         >
                           <Link
                             to={`/cat/${item.cat_name.toLowerCase()}`}
-                            // onClick={() =>
-                            //   sessionStorage.setItem(
-                            //     "cat",
-                            //     item.cat_name.toLowerCase()
-                            //   )
-                            // }
+                            onClick={() =>
+                              sessionStorage.setItem(
+                                "cat",
+                                item.cat_name.toLowerCase()
+                              )
+                            }
                           >
                             {item.cat_name}{" "}
                             <KeyboardArrowDownIcon
@@ -77,19 +77,19 @@ const Navbar = (props) => {
                                     <Button
                                     // onClick={props.closeNav}
                                     >
-                                      <a
-                                        href={`/cat/${item.cat_name.toLowerCase()}/${item_.cat_name
+                                      <Link
+                                        to={`/cat/${item.cat_name.toLowerCase()}/${item_.cat_name
                                           .replace(/\s/g, "-")
                                           .toLowerCase()}`}
-                                        // onClick={() =>
-                                        //   sessionStorage.setItem(
-                                        //     "cat",
-                                        //     item.cat_name.toLowerCase()
-                                        //   )
-                                        // }
+                                        onClick={() =>
+                                          sessionStorage.setItem(
+                                            "cat",
+                                            item.cat_name.toLowerCase()
+                                          )
+                                        }
                                       >
                                         {item_.cat_name}
-                                      </a>
+                                      </Link>
                                     </Button>
                                   </li>
                                 );

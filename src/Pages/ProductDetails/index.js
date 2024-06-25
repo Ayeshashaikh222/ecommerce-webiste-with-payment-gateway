@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
@@ -13,7 +13,7 @@ import { Button } from "@mui/material";
 import SideBar from "../../components/SideBar/index";
 import Product from "../../components/Product";
 
-const ProductDetailPage = () => {
+const ProductDetailPage = (props) => {
   const [ZoomImage, setZoomImage] = useState(
     "https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/product-16-5.jpg"
   );
@@ -27,9 +27,13 @@ const ProductDetailPage = () => {
 
   const [activeTab, setActiveTab] = useState(0);
 
+  const [currentProduct, setCurrentProduct] = useState({});
+
   const zoomSlider = useRef();
 
   const zoomSliderBig = useRef();
+
+  let { id } = useParams();
 
   var settings = {
     dots: false,
@@ -85,6 +89,52 @@ const ProductDetailPage = () => {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    props.data.length !== 0 &&
+      props.data.map((item) => {
+        item.items.length !== 0 &&
+          item.items.map((item_) => {
+            item_.products.length !== 0 &&
+              item_.products.map((product) => {
+                if (parseInt(product.id) === parseInt(id)) {
+                  setCurrentProduct(product);
+                }
+              });
+          });
+      });
+
+    //related products code
+
+    // const related_products = [];
+
+    // props.data.length !== 0 &&
+    //   props.data.map((item) => {
+    //     if (prodCat.parentCat === item.cat_name) {
+    //       item.items.length !== 0 &&
+    //         item.items.map((item_) => {
+    //           if (prodCat.subCatName === item_.cat_name) {
+    //             item_.products.length !== 0 &&
+    //               item_.products.map((product, index) => {
+    //                 if (product.id !== parseInt(id)) {
+    //                   related_products.push(product);
+    //                 }
+    //               });
+    //           }
+    //         });
+    //     }
+    //   });
+
+    // if (related_products.length !== 0) {
+    //   setRelatedProducts(related_products);
+    // }
+
+    // showReviews();
+
+    // getCartData("http://localhost:5000/cartItems");
+  }, [id]);
+
   return (
     <section className="detailsPage mb-5">
       <div className="breadcrumbWrapper mb-4">
@@ -112,7 +162,17 @@ const ProductDetailPage = () => {
                 className="zoomSliderBig"
                 ref={zoomSliderBig}
               >
-                <div className="item">
+                {currentProduct.productImages !== undefined &&
+                  currentProduct.productImages.map((imgUrl, index) => (
+                    <div className="item">
+                      <InnerImageZoom
+                        zoomType="hover"
+                        zoomScale={1}
+                        src={`${imgUrl}?im=Resize=(${bigImageSize[0]},${bigImageSize[1]})`}
+                      />
+                    </div>
+                  ))}
+                {/* <div className="item">
                   <InnerImageZoom
                     zoomType="hover"
                     zoomScale={1}
@@ -150,8 +210,8 @@ const ProductDetailPage = () => {
                     zoomScale={1}
                     src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-3.jpg"
                   />
-                </div>
-
+                </div> */}
+                {/* 
                 <div className="item">
                   <InnerImageZoom
                     zoomType="hover"
@@ -166,12 +226,25 @@ const ProductDetailPage = () => {
                     zoomScale={1}
                     src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-5.jpg"
                   />
-                </div>
+                </div> */}
               </Slider>
             </div>
 
             <Slider {...settings} className="zoomSlider" ref={zoomSlider}>
-              <div className="item">
+              {currentProduct.productImages !== undefined &&
+                currentProduct.productImages.map((imgUrl, index) => {
+                  return (
+                    <div className="item">
+                      <img
+                        src={`${imgUrl}?im=Resize=(${smallImageSize[0]},${smallImageSize[1]})`}
+                        className="w-100"
+                        onClick={() => goto(index)}
+                      />
+                    </div>
+                  );
+                })}
+
+              {/* <div className="item">
                 <img
                   src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/product-16-5.jpg"
                   className="w-100"
@@ -254,7 +327,7 @@ const ProductDetailPage = () => {
                     )
                   }
                 />
-              </div>
+              </div> */}
             </Slider>
           </div>
           <div className="col-md-7 productInfo">
