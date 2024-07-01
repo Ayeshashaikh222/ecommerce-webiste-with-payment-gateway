@@ -64,7 +64,7 @@ const SideBar = (props) => {
       (item, index) => ratings.indexOf(item) === index
     );
     setRatings(ratings_);
-  }, [id]);
+  }, [id, props.currentCatData.length]);
 
   useEffect(() => {
     props.filterByPrice(value[0], value[1]);
@@ -124,6 +124,7 @@ const SideBar = (props) => {
           min={100}
           max={60000}
           step={5}
+          style={{ backgroundColor: "green" }}
           color="success"
         />
 

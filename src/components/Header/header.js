@@ -16,6 +16,9 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 import Navbar from "./NavBar/navbar";
+import { useContext } from "react";
+import { MyContext } from "../../App";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
   const [categories, setcategories] = useState([
@@ -36,6 +39,8 @@ const Header = (props) => {
   const [countryList, setCountryList] = useState([]);
 
   const headerRef = useRef();
+
+  const context = useContext(MyContext);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -119,11 +124,13 @@ const Header = (props) => {
                     </li>
                     <li className="list-inline-item">
                       <span>
-                        <img src={IconCart} />
-                        <span className="badge bg-success rounded-circle">
-                          3
-                        </span>
-                        Cart
+                        <Link to={"/cart"}>
+                          <img src={IconCart} />
+                          <span className="badge bg-success rounded-circle">
+                            {context.cartItems.length}
+                          </span>
+                          Cart
+                        </Link>
                       </span>
                     </li>
 

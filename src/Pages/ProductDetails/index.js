@@ -12,6 +12,8 @@ import CompareArrowsOutlinedIcon from "@mui/icons-material/CompareArrowsOutlined
 import { Button } from "@mui/material";
 import SideBar from "../../components/SideBar/index";
 import Product from "../../components/Product";
+import axios from "axios";
+import QuantityBox from "../../components/QuantityBox";
 
 const ProductDetailPage = (props) => {
   const [ZoomImage, setZoomImage] = useState(
@@ -19,7 +21,7 @@ const ProductDetailPage = (props) => {
   );
   const [bigImageSize, setBigImageSize] = useState([1500, 1500]);
 
-  const [smallImageSize, setsmallImageSize] = useState([150, 1500]);
+  const [smallImageSize, setsmallImageSize] = useState([150, 150]);
 
   const [activeSize, setActiveSize] = useState(0);
 
@@ -29,8 +31,30 @@ const ProductDetailPage = (props) => {
 
   const [currentProduct, setCurrentProduct] = useState({});
 
-  const zoomSlider = useRef();
+  const [isAdded, setIsadded] = useState(false);
 
+  const [prodCat, setProdCat] = useState({
+    parentCat: sessionStorage.getItem("parentCat"),
+    subCatName: sessionStorage.getItem("subCatName"),
+  });
+
+  const [relatedProducts, setRelatedProducts] = useState([]);
+
+  const [rating, setRating] = useState(0.0);
+
+  const [reviewsArr, setReviewsArr] = useState([]);
+
+  const [isAlreadyAddedInCart, setisAlreadyAddedInCart] = useState(false);
+
+  const [reviewFields, setReviewFields] = useState({
+    review: "",
+    userName: "",
+    rating: 0.0,
+    productId: 0,
+    date: "",
+  });
+
+  const zoomSlider = useRef();
   const zoomSliderBig = useRef();
 
   let { id } = useParams();
@@ -57,25 +81,21 @@ const ProductDetailPage = (props) => {
 
   var related = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 4,
     slidesToScroll: 1,
     fade: false,
     arrows: true,
     autoplay: 3000,
   };
 
-  const goto = (url, index) => {
-    setTimeout(() => {
-      setZoomImage(url);
-    }, 200);
-
+  const goto = (index) => {
     zoomSlider.current.slickGoTo(index);
     zoomSliderBig.current.slickGoTo(index);
   };
 
-  const isactive = (index) => {
+  const isActive = (index) => {
     setActiveSize(index);
   };
 
@@ -107,51 +127,163 @@ const ProductDetailPage = (props) => {
 
     //related products code
 
-    // const related_products = [];
+    const related_products = [];
 
-    // props.data.length !== 0 &&
-    //   props.data.map((item) => {
-    //     if (prodCat.parentCat === item.cat_name) {
-    //       item.items.length !== 0 &&
-    //         item.items.map((item_) => {
-    //           if (prodCat.subCatName === item_.cat_name) {
-    //             item_.products.length !== 0 &&
-    //               item_.products.map((product, index) => {
-    //                 if (product.id !== parseInt(id)) {
-    //                   related_products.push(product);
-    //                 }
-    //               });
-    //           }
-    //         });
-    //     }
-    //   });
+    props.data.length !== 0 &&
+      props.data.map((item) => {
+        if (prodCat.parentCat === item.cat_name) {
+          item.items.length !== 0 &&
+            item.items.map((item_) => {
+              if (prodCat.subCatName === item_.cat_name) {
+                item_.products.length !== 0 &&
+                  item_.products.map((product, index) => {
+                    if (product.id !== parseInt(id)) {
+                      related_products.push(product);
+                    }
+                  });
+              }
+            });
+        }
+      });
 
-    // if (related_products.length !== 0) {
-    //   setRelatedProducts(related_products);
-    // }
+    if (related_products.length !== 0) {
+      setRelatedProducts(related_products);
+    }
 
-    // showReviews();
+    showReviews();
 
-    // getCartData("http://localhost:5000/cartItems");
+    getCartData("http://localhost:5000/cartItems");
   }, [id]);
 
+  const changeInput = (name, value) => {
+    if (name === "rating") {
+      setRating(value);
+    }
+    setReviewFields(() => ({
+      ...reviewFields,
+      [name]: value,
+      productId: id,
+      date: new Date().toLocaleString(),
+    }));
+  };
+
+  const reviews_Arr = [];
+
+  const submitReview = async (e) => {
+    e.preventDefault();
+
+    try {
+      await axios
+        .post("http://localhost:3000/productReviews", reviewFields)
+        .then((response) => {
+          reviews_Arr.push(response.data);
+          setReviewFields(() => ({
+            review: "",
+            userName: "",
+            rating: 0.0,
+            productId: 0,
+            date: "",
+          }));
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
+
+    showReviews();
+  };
+
+  var reviews_Arr2 = [];
+  const showReviews = async () => {
+    try {
+      await axios
+        .get("http://localhost:3000/productReviews")
+        .then((response) => {
+          if (response.data.length !== 0) {
+            response.data.map((item) => {
+              if (parseInt(item.productId) === parseInt(id)) {
+                reviews_Arr2.push(item);
+              }
+            });
+          }
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
+
+    if (reviews_Arr2.length !== 0) {
+      setReviewsArr(reviews_Arr2);
+    }
+  };
+
+  const addToCart = (item) => {
+    // context.addToCart(item);
+    setIsadded(true);
+  };
+
+  const getCartData = async (url) => {
+    try {
+      await axios.get(url).then((response) => {
+        response.data.length !== 0 &&
+          response.data.map((item) => {
+            if (parseInt(item.id) === parseInt(id)) {
+              setisAlreadyAddedInCart(true);
+            }
+          });
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <section className="detailsPage mb-5">
-      <div className="breadcrumbWrapper mb-4">
-        <div className="container-fluid">
-          <ul className="breadcrumb breadcrumb2 mb-0">
-            <li>
-              <Link to={"/"}>Home</Link>
-            </li>
-            <li>
-              <Link to={""}>Vegetables & Tubers</Link>
-            </li>
-            <li>
-              <Link to={""}>Seeds of Change Organic</Link>
-            </li>
-          </ul>
+      {
+        // context.windowWidth > 992 && (
+        <div className="breadcrumbWrapper mb-4">
+          <div className="container-fluid">
+            <ul className="breadcrumb breadcrumb2 mb-0">
+              <li>
+                <Link>Home</Link>{" "}
+              </li>
+              <li>
+                <Link
+                  to={`/cat/${prodCat.parentCat
+                    .split(" ")
+                    .join("-")
+                    .toLowerCase()}`}
+                  onClick={() =>
+                    sessionStorage.setItem(
+                      "cat",
+                      prodCat.parentCat.split(" ").join("-").toLowerCase()
+                    )
+                  }
+                  className="text-capitalize"
+                >
+                  {prodCat.parentCat}
+                </Link>{" "}
+              </li>
+
+              <li>
+                <Link
+                  to={`/cat/${prodCat.parentCat.toLowerCase()}/${prodCat.subCatName
+                    .replace(/\s/g, "-")
+                    .toLowerCase()}`}
+                  onClick={() =>
+                    sessionStorage.setItem(
+                      "cat",
+                      prodCat.subCatName.toLowerCase()
+                    )
+                  }
+                  className="text-capitalize"
+                >
+                  {prodCat.subCatName}
+                </Link>{" "}
+              </li>
+              <li>{currentProduct.productName}</li>
+            </ul>
+          </div>
         </div>
-      </div>
+        // )
+      }
 
       <div className="container detailsContainer pt-3 pb-3">
         <div className="row">
@@ -172,61 +304,6 @@ const ProductDetailPage = (props) => {
                       />
                     </div>
                   ))}
-                {/* <div className="item">
-                  <InnerImageZoom
-                    zoomType="hover"
-                    zoomScale={1}
-                    src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/product-16-5.jpg"
-                  />
-                </div>
-
-                <div className="item">
-                  <InnerImageZoom
-                    zoomType="hover"
-                    zoomScale={1}
-                    src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-7.jpg"
-                  />
-                </div>
-
-                <div className="item">
-                  <InnerImageZoom
-                    zoomType="hover"
-                    zoomScale={1}
-                    src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-8.jpg"
-                  />
-                </div>
-
-                <div className="item">
-                  <InnerImageZoom
-                    zoomType="hover"
-                    zoomScale={1}
-                    src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-9.jpg"
-                  />
-                </div>
-
-                <div className="item">
-                  <InnerImageZoom
-                    zoomType="hover"
-                    zoomScale={1}
-                    src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-3.jpg"
-                  />
-                </div> */}
-                {/* 
-                <div className="item">
-                  <InnerImageZoom
-                    zoomType="hover"
-                    zoomScale={1}
-                    src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-4.jpg"
-                  />
-                </div>
-
-                <div className="item">
-                  <InnerImageZoom
-                    zoomType="hover"
-                    zoomScale={1}
-                    src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-5.jpg"
-                  />
-                </div> */}
               </Slider>
             </div>
 
@@ -243,100 +320,15 @@ const ProductDetailPage = (props) => {
                     </div>
                   );
                 })}
-
-              {/* <div className="item">
-                <img
-                  src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/product-16-5.jpg"
-                  className="w-100"
-                  onClick={() =>
-                    goto(
-                      "https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-6.jpg",
-                      0
-                    )
-                  }
-                />
-              </div>
-              <div className="item">
-                <img
-                  src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-7.jpg"
-                  className="w-100"
-                  onClick={() =>
-                    goto(
-                      "https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-7.jpg",
-                      1
-                    )
-                  }
-                />
-              </div>
-              <div className="item">
-                <img
-                  src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-8.jpg"
-                  className="w-100"
-                  onClick={() =>
-                    goto(
-                      "https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-8.jpg",
-                      2
-                    )
-                  }
-                />
-              </div>
-              <div className="item">
-                <img
-                  src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-9.jpg"
-                  className="w-100"
-                  onClick={() =>
-                    goto(
-                      "https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-9.jpg",
-                      3
-                    )
-                  }
-                />
-              </div>
-              <div className="item">
-                <img
-                  src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-3.jpg"
-                  className="w-100"
-                  onClick={() =>
-                    goto(
-                      "https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-3.jpg",
-                      4
-                    )
-                  }
-                />
-              </div>
-              <div className="item">
-                <img
-                  src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-4.jpg"
-                  className="w-100"
-                  onClick={() =>
-                    goto(
-                      "https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-4.jpg",
-                      5
-                    )
-                  }
-                />
-              </div>
-              <div className="item">
-                <img
-                  src="https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-5.jpg"
-                  className="w-100"
-                  onClick={() =>
-                    goto(
-                      "https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-5.jpg",
-                      6
-                    )
-                  }
-                />
-              </div> */}
             </Slider>
           </div>
           <div className="col-md-7 productInfo">
-            <h1>seeds of Change Organic Quinoa, Brown</h1>
+            <h1>{currentProduct.productName}</h1>
             <div className="d-flex align-items-center mb-4 mt-3">
               <Rating
                 className="rating"
                 name="half-rating-read"
-                defaultValue={3.5}
+                value={parseFloat(currentProduct.rating)}
                 precision={0.5}
                 readOnly
               />
@@ -344,94 +336,105 @@ const ProductDetailPage = (props) => {
             </div>
 
             <div className="priceSection d-flex align-items-center mb-3">
-              <span className="text-g priceLarge">$38</span>
+              <span className="text-g priceLarge">
+                Rs {currentProduct.price}
+              </span>
               <div className=" d-flex flex-column ml-2">
-                <span className="text-org">26% off</span>
-                <span className="text-light oldPrice">$52</span>
+                <span className="text-org">{currentProduct.discount} off</span>
+                <span className="text-light oldPrice">
+                  Rs {currentProduct.oldPrice}
+                </span>
               </div>
             </div>
 
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac
-              justo eget urna hendrerit consectetur. Proin accumsan ipsum non
-              leo consequat, nec eleifend justo luctus. Nullam vulputate, elit
-              non euismod tincidunt.
-            </p>
+            <p>{currentProduct.description}</p>
 
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac
-              justo eget urna hendrerit consectetur. Proin accumsan ipsum non
-              leo consequat, nec eleifend justo luctus. Nullam vulputate, elit
-              non euismod tincidunt.
-            </p>
+            {currentProduct.weight !== undefined &&
+              currentProduct.weight.length !== 0 && (
+                <div className="productSize d-flex align-items-center">
+                  <span>Size / Weight:</span>
+                  <ul className="list list-inline mb-0 pl-4">
+                    {currentProduct.weight.map((item, index) => {
+                      return (
+                        <li className="list-inline-item">
+                          <a
+                            className={`tag ${
+                              activeSize === index ? "active" : ""
+                            }`}
+                            onClick={() => isActive(index)}
+                          >
+                            {item}g
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
 
-            <div className="productSize d-flex align-items-center">
-              <span>Size / Weight:</span>
-              <ul className="list list-inline mb-0 pl-4">
-                <li className="list-inline-item">
-                  <Link
-                    className={`tag ${activeSize === 0 ? "active" : ""}`}
-                    onClick={() => isactive(0)}
-                  >
-                    50g
-                  </Link>
-                </li>
-                <li className="list-inline-item">
-                  <Link
-                    className={`tag ${activeSize === 1 ? "active" : ""}`}
-                    onClick={() => isactive(1)}
-                  >
-                    60g
-                  </Link>
-                </li>
-                <li className="list-inline-item">
-                  <Link
-                    className={`tag ${activeSize === 2 ? "active" : ""}`}
-                    onClick={() => isactive(2)}
-                  >
-                    80g
-                  </Link>
-                </li>
-                <li className="list-inline-item">
-                  <Link
-                    className={`tag ${activeSize === 3 ? "active" : ""}`}
-                    onClick={() => isactive(3)}
-                  >
-                    100g
-                  </Link>
-                </li>
-                <li className="list-inline-item">
-                  <Link
-                    className={`tag ${activeSize === 4 ? "active" : ""}`}
-                    onClick={() => isactive(4)}
-                  >
-                    150g
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            {currentProduct.RAM !== undefined &&
+              currentProduct.RAM.length !== 0 && (
+                <div className="productSize d-flex align-items-center">
+                  <span>RAM:</span>
+                  <ul className="list list-inline mb-0 pl-4">
+                    {currentProduct.RAM.map((RAM, index) => {
+                      return (
+                        <li className="list-inline-item">
+                          <a
+                            className={`tag ${
+                              activeSize === index ? "active" : ""
+                            }`}
+                            onClick={() => isActive(index)}
+                          >
+                            {RAM} GB
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
 
-            <div className="addCartSection pt-4 pb-4 d-flex align-items-center">
-              <div className="counterSection mr-2">
-                <input type="number" value={inputValue} />
-                <span className="arrow plus" onClick={plus}>
-                  <KeyboardArrowUpIcon />
-                </span>
-                <span className=" arrow minus" onClick={minus}>
-                  <KeyboardArrowDownIcon />
-                </span>
+            {currentProduct.SIZE !== undefined &&
+              currentProduct.SIZE.length !== 0 && (
+                <div className="productSize d-flex align-items-center">
+                  <span>SIZE:</span>
+                  <ul className="list list-inline mb-0 pl-4">
+                    {currentProduct.SIZE.map((SIZE, index) => {
+                      return (
+                        <li className="list-inline-item">
+                          <a
+                            className={`tag ${
+                              activeSize === index ? "active" : ""
+                            }`}
+                            onClick={() => isActive(index)}
+                          >
+                            {SIZE}
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+
+            <div className="d-flex align-items-center">
+              <div>
+                <QuantityBox />
               </div>
 
-              <Button className="addtocartbtn btn-g btn-lg">
-                <ShoppingCartOutlinedIcon />
-                Add to Cart
-              </Button>
-              <Button className="addtocartbtn btn-lg ml-3 btn-border">
-                <FavoriteBorderOutlinedIcon />
-              </Button>
-              <Button className="addtocartbtn btn-lg ml-3 btn-border ">
-                <CompareArrowsOutlinedIcon />
-              </Button>
+              <div className="d-flex align-items-center ml-3">
+                <Button className="addtocartbtn btn-g btn-lg">
+                  <ShoppingCartOutlinedIcon />
+                  Add to Cart
+                </Button>
+                <Button className="addtocartbtn btn-lg ml-3 btn-border">
+                  <FavoriteBorderOutlinedIcon />
+                </Button>
+                <Button className="addtocartbtn btn-lg ml-3 btn-border ">
+                  <CompareArrowsOutlinedIcon />
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -470,56 +473,9 @@ const ProductDetailPage = (props) => {
 
             {activeTab === 0 && (
               <div className="tabContent">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Vestibulum vehicula ex eu tincidunt faucibus. Quisque
-                  tincidunt eros sed metus vulputate, sit amet scelerisque erat
-                  sollicitudin. Sed id magna non eros dictum blandit. Nam et
-                  enim sed orci scelerisque lacinia. Curabitur lacinia tortor at
-                  quam fermentum, non congue libero scelerisque. Aenean a
-                  interdum lectus. Suspendisse potenti.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Vestibulum vehicula ex eu tincidunt faucibus. Quisque
-                  tincidunt eros sed metus vulputate, sit amet scelerisque erat
-                  sollicitudin. Sed id magna non eros dictum blandit. Nam et
-                  enim sed orci scelerisque lacinia. Curabitur lacinia tortor at
-                  quam fermentum, non congue libero scelerisque. Aenean a
-                  interdum lectus. Suspendisse potenti.
-                </p>
-                <br />
-
-                <h2>Packaging & Delivery</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Vestibulum vehicula ex eu tincidunt faucibus. Quisque
-                  tincidunt eros sed metus vulputate, sit amet scelerisque erat
-                  sollicitudin. Sed id magna non eros dictum blandit. Nam et
-                  enim sed orci scelerisque lacinia. Curabitur lacinia tortor at
-                  quam fermentum, non congue libero scelerisque. Aenean a
-                  interdum lectus. Suspendisse potenti.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Vestibulum vehicula ex eu tincidunt faucibus. Quisque
-                  tincidunt eros sed metus vulputate, sit amet scelerisque erat
-                  sollicitudin. Sed id magna non eros dictum blandit. Nam et
-                  enim sed orci scelerisque lacinia. Curabitur lacinia tortor at
-                  quam fermentum, non congue libero scelerisque. Aenean a
-                  interdum lectus. Suspendisse potenti.
-                </p>
-                <br />
-
-                <h2>Suggested Use</h2>
-                <p>Lorem ipsum dolor sit amet</p>
-                <p>Curabitur lacinia</p>
+                <p>{currentProduct.description}</p>
 
                 <br />
-
-                <h2>Other Ingredients</h2>
-                <p>non congue libero scelerisque.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </div>
             )}
 
@@ -624,7 +580,44 @@ const ProductDetailPage = (props) => {
                   <div className="col-md-8">
                     <h3>Customer questions & answers</h3>
                     <br />
-                    <div className="card p-4 reviewCard flex-row">
+
+                    {reviewsArr.length !== 0 &&
+                      reviewsArr !== undefined &&
+                      reviewsArr.map((review, index) => {
+                        return (
+                          <div
+                            className="card p-4 reviewsCard flex-row"
+                            key={index}
+                          >
+                            <div className="image">
+                              <div className="rounded-circle">
+                                <img src="https://wp.alithemes.com/html/nest/demo/assets/imgs/blog/author-2.png" />
+                              </div>
+                              <span className="text-g d-block text-center font-weight-bold">
+                                {review.userName}
+                              </span>
+                            </div>
+
+                            <div className="info pl-5">
+                              <div className="d-flex align-items-center w-100">
+                                <h5 className="text-light">{review.date}</h5>
+                                <div className="ml-auto">
+                                  <Rating
+                                    name="half-rating-read"
+                                    value={parseFloat(review.rating)}
+                                    precision={0.5}
+                                    readOnly
+                                  />
+                                </div>
+                              </div>
+
+                              <p>{review.review} </p>
+                            </div>
+                          </div>
+                        );
+                      })}
+
+                    {/* <div className="card p-4 reviewCard flex-row">
                       <div className="image">
                         <div className="rounded-circle">
                           <img
@@ -662,8 +655,8 @@ const ProductDetailPage = (props) => {
                           lacinia. Curabitur lacinia tortor.
                         </p>
                       </div>
-                    </div>
-
+                    </div> */}
+                    {/* 
                     <div className="card p-4 reviewCard flex-row">
                       <div className="image">
                         <div className="rounded-circle">
@@ -782,18 +775,23 @@ const ProductDetailPage = (props) => {
                           lacinia. Curabitur lacinia tortor.
                         </p>
                       </div>
-                    </div>
+                    </div> */}
 
                     <br />
                     <br />
 
-                    <form className="reviewForm">
+                    <form className="reviewForm" onSubmit={submitReview}>
                       <h4>Add a review</h4>
                       <br />
                       <div className="form-group">
                         <textarea
                           className="form-control"
                           placeholder="Write a Review"
+                          name="review"
+                          value={reviewFields.review}
+                          onChange={(e) =>
+                            changeInput(e.target.name, e.target.value)
+                          }
                         ></textarea>
                       </div>
 
@@ -802,33 +800,49 @@ const ProductDetailPage = (props) => {
                           <div className="form-group">
                             <input
                               type="text"
+                              value={reviewFields.userName}
                               className="form-control"
                               placeholder="Name"
+                              name="userName"
+                              onChange={(e) =>
+                                changeInput(e.target.name, e.target.value)
+                              }
                             />
                           </div>
                         </div>
 
                         <div className="col-md-6 ">
                           <div className="form-group">
-                            <input
+                            <Rating
+                              name="rating"
+                              value={rating}
+                              precision={0.5}
+                              onChange={(e) =>
+                                changeInput(e.target.name, e.target.value)
+                              }
+                            />
+                            {/* <input
                               type="text"
                               className="form-control"
                               placeholder="Email"
-                            />
+                              name="Email"
+                            /> */}
                           </div>
                         </div>
                       </div>
 
-                      <div className="form-group mb-5">
+                      {/* <div className="form-group mb-5">
                         <input
                           type="text"
                           className="form-control"
                           placeholder="Website"
                         />
-                      </div>
+                      </div> */}
 
                       <div className="form-group">
-                        <Button className="btn-g btn-lg">Submit Review</Button>
+                        <Button type="submit" className="btn-g btn-lg">
+                          Submit Review
+                        </Button>
                       </div>
                     </form>
                   </div>
@@ -932,24 +946,14 @@ const ProductDetailPage = (props) => {
         <div className="relatedProducts pt-5 pb-4 ">
           <h3 className="hd mb-0 mt-3 mb-5">Related Products</h3>
           <Slider {...related} className="productSlider">
-            <div className="item">
-              <Product tag="hot" />
-            </div>
-            <div className="item">
-              <Product tag="sale" />
-            </div>
-            <div className="item">
-              <Product tag="best" />
-            </div>
-            <div className="item">
-              <Product tag="sale" />
-            </div>
-            <div className="item">
-              <Product tag="best" />
-            </div>
-            <div className="item">
-              <Product tag="new" />
-            </div>
+            {relatedProducts.length !== 0 &&
+              relatedProducts.map((product, index) => {
+                return (
+                  <div className="item" key={index}>
+                    <Product tag={product.type} item={product} />
+                  </div>
+                );
+              })}
           </Slider>
         </div>
       </div>

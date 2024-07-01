@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import Rating from "@mui/material/Rating";
 import { Button } from "@mui/material";
@@ -8,9 +8,13 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import CompareArrowsOutlinedIcon from "@mui/icons-material/CompareArrowsOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
+import { MyContext } from "../../App";
+
 const Product = (props) => {
   const [productData, setProductData] = useState();
   const [isAdded, setIsadded] = useState(false);
+
+  const context = useContext(MyContext);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,10 +26,10 @@ const Product = (props) => {
     sessionStorage.setItem("subCatName", productData.subCatName);
   };
 
-  // const addToCart = (item) => {
-  //   context.addToCart(item);
-  //   setIsadded(true);
-  // };
+  const addToCart = (item) => {
+    context.addToCart(item);
+    setIsadded(true);
+  };
 
   return (
     <div className="productThumb" onClick={setProductCat}>
@@ -94,7 +98,7 @@ const Product = (props) => {
 
             <Button
               className="w-100 transition mt-3"
-              // onClick={() => addToCart(productData)}
+              onClick={() => addToCart(productData)}
             >
               <ShoppingCartOutlinedIcon />
               {isAdded === true ? "Added" : "Add"}

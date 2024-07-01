@@ -60,15 +60,15 @@ const Home = (props) => {
         item.items.map((item_, index_) => {
           if (item_.cat_name === activeTab) {
             {
-              // item_.products.length !== 0 &&
-              //   item_.products.map((product) => {
-              //     arr.push({
-              //       ...product,
-              //       parentCatName: item.cat_name,
-              //       subCatName: item_.cat_name,
-              //     });
-              //   });
-              // setActiveTabData(arr);
+              item_.products.length !== 0 &&
+                item_.products.map((product) => {
+                  arr.push({
+                    ...product,
+                    parentCatName: item.cat_name,
+                    subCatName: item_.cat_name,
+                  });
+                });
+              setActiveTabData(arr);
               // setTimeout(() => {
               //   setIsLoadingProducts(false);
               // }, [1000]);

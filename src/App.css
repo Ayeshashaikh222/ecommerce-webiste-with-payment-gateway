@@ -734,10 +734,13 @@ input[type="number"] {
   height: 100px;
 }
 
-.reviewCard .rounded-circle img {
+.reiewCard .vrounded-circle img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.reiewCard .info {
+  width: 85%;
 }
 
 .reviewCard .image {
