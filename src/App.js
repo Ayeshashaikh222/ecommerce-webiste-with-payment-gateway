@@ -11,6 +11,8 @@ import ProductDetailPage from "./Pages/ProductDetails/index";
 import axios from "axios";
 import { useEffect, useState, createContext } from "react";
 import Cart from "./Pages/Cart";
+import SignUp from "./Pages/SignUp";
+import SignIn from "./Pages/SignIn";
 
 const MyContext = createContext();
 
@@ -28,16 +30,27 @@ function App() {
   const [cartTotalAmount, setCartTotalAmount] = useState();
 
   useEffect(() => {
-    // getData("http://localhost:3000/productData");
-    getCartData("http://localhost:3000/productData");
+    getData("http://localhost:3000/productData");
+    // getCartData("http://localhost:3000/productData");
+    getCartData("http://localhost:3000/cartItems");
   }, []);
 
-  const getCartData = async (url) => {
+  const getData = async (url) => {
     try {
       const response = await axios.get(url);
 
       setProductData(response.data);
       // setCartItems(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const getCartData = async (url) => {
+    try {
+      const response = await axios.get(url);
+      // console.log(response.data);
+      setCartItems(response.data);
     } catch (error) {
       console.log(error.message);
     }
@@ -57,7 +70,7 @@ function App() {
     }
   };
 
-  const removeItemsFromCart = async (id) => {
+  const removeItemsFromCart = (id) => {
     // const response = await axios.delete(
     //   `http://localhost:3000/cartItems/${id}`
     // );
@@ -89,21 +102,21 @@ function App() {
 
   const value = {
     cartItems,
-    // isLogin,
-    // windowWidth,
-    // isOpenFilters,
+    isLogin,
+    windowWidth,
+    isOpenFilters,
     addToCart,
     removeItemsFromCart,
     emptyCart,
-    // signOut,
-    // signIn,
-    // openFilters,
-    // isopenNavigation,
-    // setIsopenNavigation,
-    // setCartTotalAmount,
-    // cartTotalAmount,
-    // setCartItems,
-    // cartItems,
+    signOut,
+    signIn,
+    openFilters,
+    isopenNavigation,
+    setIsopenNavigation,
+    setCartTotalAmount,
+    cartTotalAmount,
+    setCartItems,
+    cartItems,
   };
 
   return (
@@ -138,7 +151,6 @@ function App() {
             element={<ProductDetailPage />}
           /> */}
             <Route exact={true} path="/about" element={<About />} />
-            <Route exact={true} path="*" element={<NotFound />} />
             <Route
               exact={true}
               path="/product/:id"
@@ -150,6 +162,9 @@ function App() {
               element={<ProductDetailPage data={productData} />}
             />
             <Route exact={true} path="/cart" element={<Cart />} />
+            <Route exact={true} path="/SignUp" element={<SignUp />} />
+            <Route exact={true} path="/SignIn" element={<SignIn />} />
+            <Route exact={true} path="*" element={<NotFound />} />
           </Routes>
           <Footer />
         </MyContext.Provider>

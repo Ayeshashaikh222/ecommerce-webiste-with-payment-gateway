@@ -29,7 +29,7 @@ const Cart = () => {
   // }, [context.cartItems]);
 
   useEffect(() => {
-    getCartData("http://localhost:3000/productData");
+    getCartData("http://localhost:3000/cartItems");
   }, []);
 
   const getCartData = async (url) => {
@@ -67,7 +67,7 @@ const Cart = () => {
     context.emptyCart();
   };
 
-  const updateCartData = (items) => {
+  const updateCart = (items) => {
     setCartItems(items);
   };
 
@@ -95,8 +95,9 @@ const Cart = () => {
                 <div className="left">
                   <h1 className="hd mb-0 pt-4">Your Cart</h1>
                   <p>
-                    There are <span className="text-g">3</span> products in your
-                    cart
+                    There are{" "}
+                    <span className="text-g">{context.cartItems.length}</span>{" "}
+                    products in your cart
                   </p>
                 </div>
                 <span
@@ -165,10 +166,10 @@ const Cart = () => {
 
                               <td>
                                 <QuantityBox
-                                // item={item}
-                                // cartItems={cartItems}
-                                // index={index}
-                                // updateCart={updateCart}
+                                  item={item}
+                                  cartItems={cartItems}
+                                  index={index}
+                                  updateCart={updateCart}
                                 />
                               </td>
 
@@ -204,7 +205,10 @@ const Cart = () => {
                     <KeyboardBackspaceIcon /> Continue Shopping
                   </Button>
                 </Link>
-                <Button className="btn-g ml-auto" onClick={updateCartData}>
+                <Button
+                  className="btn-g ml-auto"
+                  // onClick={updateCart}
+                >
                   <RefreshIcon /> Update Cart
                 </Button>
               </div>
@@ -216,6 +220,7 @@ const Cart = () => {
                   <h5 className="mb-0 text-light">Subtotal</h5>
                   <h3 className="ml-auto mb-0 font-weight-bold">
                     <span className="text-g">
+                      Rs{" "}
                       {cartItems.length !== 0 &&
                         cartItems
                           .map(
@@ -246,6 +251,7 @@ const Cart = () => {
                   <h5 className="mb-0 text-light">Total</h5>
                   <h3 className="ml-auto mb-0 font-weight-bold">
                     <span className="text-g">
+                      Rs{" "}
                       {cartItems.length !== 0 &&
                         cartItems
                           .map(

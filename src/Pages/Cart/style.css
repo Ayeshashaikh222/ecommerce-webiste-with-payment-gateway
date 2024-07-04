@@ -50,6 +50,10 @@
 .cartWrapper table tbody td .info {
   width: 70%;
 }
+
+.cartWrapper table tbody td .info h4 {
+  font-size: 16px;
+}
 .cartWrapper table tbody td .info a {
   color: rgba(0, 0, 0, 0.7);
 }
