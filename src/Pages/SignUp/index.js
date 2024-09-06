@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./style.css";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -8,6 +8,7 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 import { Button } from "@mui/material";
 import { useState } from "react";
 import GoogleImg from "../../assets/images/google.png";
+import axios from "axios";
 
 // import { initializeApp } from "firebase/app";
 // import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -29,6 +30,8 @@ const SignUp = () => {
     password: "",
     conformPassword: "",
   });
+
+  const history = useNavigate();
 
   //   const signUp = () => {
   //     if (
@@ -75,6 +78,25 @@ const SignUp = () => {
     }));
   };
 
+  const signUp = async (event) => {
+    event.preventDefault();
+    console.log("executing............");
+    try {
+      const response = await axios.post(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB2EtNXxUQ6MIJhGwjCXFRUV_bWmyoBqGs",
+        {
+          email: formFields.email,
+          password: formFields.password,
+          returnSecureToken: true,
+        }
+      );
+      localStorage.setItem("token", response.data.idToken);
+      history("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <section className="signIn mb-5">
@@ -100,7 +122,12 @@ const SignUp = () => {
             </Backdrop>
 
             <h3>SignUp</h3>
-            <form className="mt-4">
+            <form
+              className="mt-4"
+              onSubmit={(event) => {
+                signUp(event);
+              }}
+            >
               <div className="form-group mb-4 w-100">
                 <TextField
                   id="email"
@@ -163,6 +190,7 @@ const SignUp = () => {
               <div className="form-group mt-5 mb-4 w-100">
                 <Button
                   className="btn btn-g btn-lg w-100"
+                  type="submit"
                   //  onClick={signUp}
                 >
                   Sign Up

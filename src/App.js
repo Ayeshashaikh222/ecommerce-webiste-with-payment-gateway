@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Header from "./components/Header/header";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./Pages/Home/index";
 import About from "./Pages/About";
 import Listing from "./Pages/Listing";
@@ -71,13 +71,6 @@ function App() {
   };
 
   const removeItemsFromCart = (id) => {
-    // const response = await axios.delete(
-    //   `http://localhost:3000/cartItems/${id}`
-    // );
-    // if (response !== null) {
-    //   getCartData("http://localhost:3000/cartItems");
-    // }
-
     const arr = cartItems.filter((obj) => obj.id !== id);
     setCartItems(arr);
   };
@@ -145,11 +138,7 @@ function App() {
               path="/cat/:id/:id"
               element={<Listing data={productData} single={false} />}
             />
-            {/* <Route
-            exact={true}
-            path="/product/details"
-            element={<ProductDetailPage />}
-          /> */}
+
             <Route exact={true} path="/about" element={<About />} />
             <Route
               exact={true}
@@ -165,8 +154,11 @@ function App() {
             <Route exact={true} path="/SignUp" element={<SignUp />} />
             <Route exact={true} path="/SignIn" element={<SignIn />} />
             <Route exact={true} path="*" element={<NotFound />} />
+
+            {/* {!hideFooterRoutes.includes(location.pathname) && <Footer />} */}
           </Routes>
           <Footer />
+          {/* <MainContent data={productData} /> */}
         </MyContext.Provider>
       </BrowserRouter>
     )

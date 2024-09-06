@@ -99,6 +99,10 @@
   height: auto !important;
   padding: 40px 45px !important;
 }
+
+.megaMenu .col a {
+  text-decoration: none;
+}
 .megaMenu .col ul li {
   margin-bottom: 10px !important;
   display: block;

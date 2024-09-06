@@ -1442,7 +1442,7 @@
   ],
   "cartItems": [
     {
-      "id": 13,
+      "id": "13",
       "type": "new",
       "productName": "HARYANA FRESH Rich Desi Danedar Ghee 500 Grams (Carton)",
       "price": "249",
@@ -1465,6 +1465,115 @@
       ],
       "rating": 4,
       "description": "Ghee is a class of clarified butter that originated in ancient India. It is commonly used in Indian cooking. Amul Cow Ghee can be swapped for vegetable oil or coconut oil in baked goods or can be used for deep-frying. Or simply melt it and spread it on roti, or pour it on vegetables/dal before serving. So go ahead and buy this product online today",
+      "quantity": 1
+    },
+    {
+      "id": "9",
+      "type": "sale",
+      "productName": "Gowardhan Pure Cow Ghee 1 L (Jar)",
+      "price": "676",
+      "oldPrice": "820",
+      "weight": [
+        50,
+        100,
+        150,
+        200,
+        250,
+        500
+      ],
+      "catImg": "https://www.jiomart.com/images/product/original/490489040/gowardhan-pure-cow-ghee-1-l-jar-product-images-o490489040-p490489040-0-202203170210.jpg",
+      "discount": "18",
+      "brand": "Gowardhan",
+      "productImages": [
+        "https://www.jiomart.com/images/product/original/490489040/gowardhan-pure-cow-ghee-1-l-jar-product-images-o490489040-p490489040-0-202203170210.jpg",
+        "https://www.jiomart.com/images/product/original/490489040/gowardhan-pure-cow-ghee-1-l-jar-product-images-o490489040-p490489040-1-202203170210.jpg",
+        "https://www.jiomart.com/images/product/original/490489040/gowardhan-pure-cow-ghee-1-l-jar-product-images-o490489040-p490489040-2-202203170210.jpg",
+        "https://www.jiomart.com/images/product/original/490489040/gowardhan-pure-cow-ghee-1-l-jar-legal-images-o490489040-p490489040-5-202203170210.jpg"
+      ],
+      "rating": 5,
+      "description": "Ghee is a class of clarified butter that originated in ancient India. It is commonly used in Indian cooking. Gowardhan Pure Cow Ghee can be swapped for vegetable oil or coconut oil in baked goods or can be used for deep-frying. Or simply melt it and spread it on roti, or pour it on vegetables/dal before serving. So go ahead and buy this product online today!",
+      "parentCatName": "Groceries",
+      "subCatName": "Ghee & Oils",
+      "quantity": 1
+    },
+    {
+      "id": 36,
+      "type": "best",
+      "productName": "Apple iPhone 13 128 GB, Midnight (Black)",
+      "price": "56,900.00",
+      "oldPrice": "59,900.00",
+      "weight": [],
+      "RAM": [
+        4,
+        6,
+        8,
+        12
+      ],
+      "catImg": "https://www.jiomart.com/images/product/original/491997699/apple-iphone-13-128-gb-midnight-black-digital-o491997699-p590798548-0-202208221207.jpeg",
+      "discount": "20",
+      "brand": "Apple",
+      "productImages": [
+        "https://www.jiomart.com/images/product/original/491997699/apple-iphone-13-128-gb-midnight-black-digital-o491997699-p590798548-0-202208221207.jpeg",
+        "https://www.jiomart.com/images/product/original/491997699/apple-iphone-13-128-gb-midnight-black-digital-o491997699-p590798548-1-202208221207.jpeg",
+        "https://www.jiomart.com/images/product/original/491997699/apple-iphone-13-128-gb-midnight-black-digital-o491997699-p590798548-2-202208221207.jpeg",
+        "https://www.jiomart.com/images/product/original/491997699/apple-iphone-13-128-gb-midnight-black-digital-o491997699-p590798548-3-202208221207.jpeg",
+        "https://www.jiomart.com/images/product/original/491997699/apple-iphone-13-128-gb-midnight-black-digital-o491997699-p590798548-4-202208221207.jpeg"
+      ],
+      "rating": 4.5,
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. ",
+      "quantity": 1
+    },
+    {
+      "id": 2,
+      "type": "hot",
+      "productName": "Moong Dal 2 kg",
+      "price": "246",
+      "oldPrice": "320",
+      "weight": [
+        50,
+        100,
+        150,
+        200,
+        250,
+        500
+      ],
+      "catImg": "https://www.jiomart.com/images/product/original/491432711/moong-dal-2-kg-product-images-o491432711-p491432711-0-202205191636.jpg",
+      "discount": "16",
+      "brand": "Private Label",
+      "productImages": [
+        "https://www.jiomart.com/images/product/original/491432711/moong-dal-2-kg-product-images-o491432711-p491432711-0-202205191636.jpg",
+        "https://www.jiomart.com/images/product/original/491432711/moong-dal-2-kg-product-images-o491432711-p491432711-1-202205191636.jpg",
+        "https://www.jiomart.com/images/product/original/491432711/moong-dal-2-kg-legal-images-o491432711-p491432711-3-202205191636.jpg"
+      ],
+      "rating": 4,
+      "description": "Moong Dal is essentially packed with loads of nutrients that are extremely beneficial for your health. Moong contains almost every important element that your body might need. Buy Moong Dal online today.",
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "type": "new",
+      "productName": "Tata Sampann Unpolished Chilka Moong 500 g",
+      "price": "74",
+      "oldPrice": "95",
+      "weight": [
+        50,
+        100,
+        150,
+        200,
+        250,
+        500
+      ],
+      "catImg": "https://www.jiomart.com/images/product/original/490830947/tata-sampann-high-protein-unpolished-chilka-moong-500-g-product-images-o490830947-p490830947-0-202203150526.jpg",
+      "discount": "18",
+      "brand": "Tata Sampann",
+      "productImages": [
+        "https://www.jiomart.com/images/product/original/490830947/tata-sampann-high-protein-unpolished-chilka-moong-500-g-product-images-o490830947-p490830947-0-202203150526.jpg",
+        "https://www.jiomart.com/images/product/original/490830947/tata-sampann-high-protein-unpolished-chilka-moong-500-g-product-images-o490830947-p490830947-1-202203150526.jpg",
+        "https://www.jiomart.com/images/product/original/490830947/tata-sampann-high-protein-unpolished-chilka-moong-500-g-legal-images-o490830947-p490830947-2-202203150526.jpg",
+        "https://www.jiomart.com/images/product/original/490830947/tata-sampann-high-protein-unpolished-chilka-moong-500-g-legal-images-o490830947-p490830947-5-202203150526.jpg"
+      ],
+      "rating": 4,
+      "description": "Moong Dal is procured from reliable and high-quality sources. The beans are best consumed after being sprouted. Dosa with the whole moong also turns out to be yummy, another exotic way to eat moong is to eat it as a korma which is spiced up with tangy tomatoes and a cashew paste. It is mainly used as the base for curries such as sambar, dal, etc. Buy Tata Sampann Unpolished Chilka Moong online now!",
       "quantity": 1
     }
   ]

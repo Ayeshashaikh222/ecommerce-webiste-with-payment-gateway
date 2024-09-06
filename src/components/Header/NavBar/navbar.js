@@ -295,18 +295,6 @@ const Navbar = (props) => {
                     </ul>
                   </div>
                 </li>
-
-                {/* <li className="list-inline-item">
-                  <Button>
-                    <Link>About</Link>
-                  </Button>
-                </li>
-
-                <li className="list-inline-item">
-                  <Button>
-                    <Link>Contact</Link>
-                  </Button>
-                </li> */}
               </ul>
             </nav>
           </div>

@@ -112,6 +112,11 @@ header .headerTabs li {
   margin-left: 10px;
 }
 
+header .headerTabs li a {
+  text-decoration: none;
+  color: #000;
+}
+
 header .headerTabs li span {
   font-size: 14px;
   cursor: pointer;

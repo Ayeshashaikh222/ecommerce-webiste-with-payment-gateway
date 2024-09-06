@@ -8,26 +8,15 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 import { Button } from "@mui/material";
 import { useState } from "react";
 import GoogleImg from "../../assets/images/google.png";
-// import { initializeApp } from "firebase/app";
-// import {
-//   getAuth,
-//   signInWithEmailAndPassword,
-//   GoogleAuthProvider,
-//   signInWithPopup,
-// } from "firebase/auth";
-// import { app } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import { useNavigate } from "react-router-dom";
-
 import { useContext } from "react";
 
 import { MyContext } from "../../App";
-
-// const auth = getAuth(app);
-// const googleProvider = new GoogleAuthProvider();
+import axios from "axios";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -53,36 +42,56 @@ const SignIn = () => {
     }));
   };
 
-  //   const signIn = () => {
-  //     if (formFields.email !== "" && formFields.password !== "") {
-  //       setShowLoader(true);
-  //       signInWithEmailAndPassword(auth, formFields.email, formFields.password)
-  //         .then((userCredential) => {
-  //           // Signed in
-  //           const user = userCredential.user;
-  //           setShowLoader(false);
-  //           setFormFields({
-  //             email: "",
-  //             password: "",
-  //           });
+  const signIn = async (event) => {
+    event.preventDefault();
+    console.log("executing............");
+    try {
+      const response = await axios.post(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB2EtNXxUQ6MIJhGwjCXFRUV_bWmyoBqGs",
+        {
+          email: formFields.email,
+          password: formFields.password,
+          returnSecureToken: true,
+        }
+      );
+      console.log(response.data.idToken);
+      localStorage.setItem("token", response.data.idToken);
+      history("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  //           localStorage.setItem("isLogin", true);
-  //           context.signIn();
-
-  //           history("/");
-
-  //           // ...
-  //         })
-  //         .catch((error) => {
-  //           const errorCode = error.code;
-  //           const errorMessage = error.message;
-  //           alert(errorMessage);
-  //           setShowLoader(false);
+  // const signIn = () => {
+  //   if (formFields.email !== "" && formFields.password !== "") {
+  //     setShowLoader(true);
+  //     signInWithEmailAndPassword(auth, formFields.email, formFields.password)
+  //       .then((userCredential) => {
+  //         // Signed in
+  //         const user = userCredential.user;
+  //         setShowLoader(false);
+  //         setFormFields({
+  //           email: "",
+  //           password: "",
   //         });
-  //     } else {
-  //       alert("Please fill all the details");
-  //     }
-  //   };
+
+  //         localStorage.setItem("isLogin", true);
+  //         context.signIn();
+
+  //         history("/");
+
+  //         // ...
+  //       })
+  //       .catch((error) => {
+  //         const errorCode = error.code;
+  //         const errorMessage = error.message;
+  //         alert(errorMessage);
+  //         setShowLoader(false);
+  //       });
+  //   } else {
+  //     alert("Please fill all the details");
+  //   }
+  // };
 
   //   const signInWithGoogle = () => {
   //     setShowLoader(true);
@@ -137,7 +146,12 @@ const SignIn = () => {
             </Backdrop>
 
             <h3>Sign In</h3>
-            <form className="mt-4">
+            <form
+              className="mt-4"
+              onSubmit={(event) => {
+                signIn(event);
+              }}
+            >
               <div className="form-group mb-4 w-100">
                 <TextField
                   id="email"
@@ -174,10 +188,7 @@ const SignIn = () => {
               </div>
 
               <div className="form-group mt-5 mb-4 w-100">
-                <Button
-                  className="btn btn-g btn-lg w-100"
-                  //  onClick={signIn}
-                >
+                <Button className="btn btn-g btn-lg w-100" type="submit">
                   Sign In
                 </Button>
               </div>

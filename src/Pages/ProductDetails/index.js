@@ -14,6 +14,7 @@ import SideBar from "../../components/SideBar/index";
 import Product from "../../components/Product";
 import axios from "axios";
 import QuantityBox from "../../components/QuantityBox";
+import { MyContext } from "../../App";
 
 const ProductDetailPage = (props) => {
   const [ZoomImage, setZoomImage] = useState(
